@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import About from '@/views/About.vue';
 import Home from '@/views/Home.vue';
 import Search from '@/views/Search.vue';
+import Storybuilder from '@/views/Storybuilder.vue';
 
 import Lost from '@/components/Lost.vue';
 
@@ -35,6 +36,11 @@ const router = new Router({
 			path: '/about',
 			name: 'about',
 			component: About,
+		},
+		{
+			path: '/storybuilder/:id',
+			name: 'storybuilder',
+			component: Storybuilder,
 		},
 		/*{
 			path: '/profile',

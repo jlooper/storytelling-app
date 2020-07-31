@@ -1,5 +1,5 @@
 <template>
-  <div class>
+  <div class="has-background-base">
     <aside v-show="showMenu" class="column is-one-fifth aside is-pulled-left">
       <nav class="menu">
         <ul class="menu-list">
@@ -27,13 +27,13 @@ export default {
     //...mapState(["user"])
     showMenu() {
       return this.$router.app._route.name !== "home";
-    }
+    },
   },
   data: () => ({
     //currentUser: firebase.auth().currentUser,
   }),
   methods: {
     //...mapActions(['fetchUser', 'fetchStudents', 'fetchPractices']),
-  }
+  },
 };
 </script>

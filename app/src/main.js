@@ -6,8 +6,8 @@ import buefy from 'buefy';
 
 Vue.use(buefy);
 Vue.config.productionTip = false;
-//import Vuelidate from 'vuelidate';
-//Vue.use(Vuelidate);
+import Vuelidate from 'vuelidate';
+Vue.use(Vuelidate);
 
 new Vue({
 	//store,
