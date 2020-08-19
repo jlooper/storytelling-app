@@ -1,17 +1,15 @@
 <template>
-	<div>
-		<section class="hero">
-			<div class="hero-body">
-				<div class="columns is-vcentered">
-					<div class="column is-half is-offset-1 is-centered home-elements">
-						<h1 class="title is-1 is-bold home-elements">Welcome!</h1>
-						<h2 class="subtitle is-3 home-elements">
-							The Storytelling App
-						</h2>
+  <div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="columns is-vcentered">
+          <div class="column is-half is-offset-1 is-centered home-elements">
+            <h1 class="title is-1 is-bold home-elements">Welcome!</h1>
+            <h2 class="subtitle is-3 home-elements">The Storytelling App</h2>
 
-						<router-link class="button is-large is-link" :to="'search'">Search the Database</router-link>
+            <router-link class="button is-large is-link" :to="'create'">Create a Story</router-link>
 
-						<!--<div class="button-box">
+            <!--<div class="button-box">
 							<b-button
 								class="social-button twitter"
 								@click="Auth('twitter')"
@@ -35,61 +33,61 @@
 								icon-left="google"
 								>Login with Google</b-button
 							>
-						</div>-->
-					</div>
+            </div>-->
+          </div>
 
-					<div class="column is-half is-centered">
-						<img src="../assets/home.png" />
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
+          <div class="column is-half is-centered">
+            <img src="../assets/home.png" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 <script>
 export default {
-	name: 'app',
-	methods: {
-		Auth(provider) {
-			const redirect = `post_login_redirect_uri=/home`;
-			const url = `/.auth/login/${provider}?${redirect}`;
-			window.location.href = url;
-		},
-	},
+  name: "app",
+  methods: {
+    Auth(provider) {
+      const redirect = `post_login_redirect_uri=/home`;
+      const url = `/.auth/login/${provider}?${redirect}`;
+      window.location.href = url;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .button-box {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 .social-button {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 .twitter {
-	color: white;
-	background-color: #55acee;
+  color: white;
+  background-color: #55acee;
 }
 .facebook {
-	color: white;
-	background-color: #3b5998;
+  color: white;
+  background-color: #3b5998;
 }
 .google {
-	color: white;
-	background-color: #34a853;
+  color: white;
+  background-color: #34a853;
 }
 .card {
-	border-radius: 5px;
-	margin: 5px;
-	padding: 10px;
-	height: 100%;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+  height: 100%;
 }
 
 .card-text,
 .title {
-	padding-top: 10px;
+  padding-top: 10px;
 }
 .content-wrapper {
-	padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 </style>

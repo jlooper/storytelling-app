@@ -5,6 +5,7 @@ import About from '@/views/About.vue';
 import Home from '@/views/Home.vue';
 import Search from '@/views/Search.vue';
 import Storybuilder from '@/views/Storybuilder.vue';
+import Create from '@/views/Create.vue';
 
 import Lost from '@/components/Lost.vue';
 
@@ -25,6 +26,11 @@ const router = new Router({
 			path: '/home',
 			name: 'home',
 			component: Home,
+		},
+		{
+			path: '/create',
+			name: 'create',
+			component: Create,
 		},
 		{
 			path: '/search',
