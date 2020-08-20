@@ -1,30 +1,28 @@
-module.exports = async function (context) {
-	import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-	import { ErrorRes, returnError } from '../shared/ErrorRes';
-	import CosmosDBClient from '../shared/CosmosDBClient';
-	
+module.exports = async function (context, req) {
+	const storyTitle = req.body;
+	const CosmosClient = require('@azure/cosmos').CosmosClient;
 
-const httpTrigger =
-  async (context, req) => {
-    
+	var cosmos_config = {};
+	cosmos_config.endpoint = process.env['VUE_APP_COSMOS_ENDPOINT'];
+	cosmos_config.key = process.env['VUE_APP_COSMOS_KEY'];
 
-    const storyTitle = req.body;
-    
-    const storyClient = new CosmosDBClient('storytelling-db');
+	const client = new CosmosClient(cosmos_config);
+	const databaseId = 'storytelling';
+	const containerId = 'stories';
 
-    let storyRes;
-    try {
-      storyRes = await storyClient.container.items.create(storyTitle);
-    } catch (error) {
-      return returnError(context, new ErrorRes(error.code, error.body.message));
-    }
+	const database = client.database(databaseId);
+	const container = database.container(containerId);
 
-    context.res = {
-      body: {
-        ...storyRes.resource
-      }
-    };
+	let storyRes;
+	try {
+		storyRes = await container.items.create(storyTitle);
+	} catch (error) {
+		return error;
+	}
 
-  };
-
-export default httpTrigger
+	context.res = {
+		body: {
+			storyRes,
+		},
+	};
+};

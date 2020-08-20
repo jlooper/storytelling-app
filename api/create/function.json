@@ -1,12 +1,12 @@
 {
 	"bindings": [
 		{
-			"authLevel": "function",
+			"authLevel": "anonymous",
 			"type": "httpTrigger",
 			"direction": "in",
 			"name": "req",
 			"methods": ["post"],
-			"route": "coupon/new"
+			"route": "stories/create"
 		},
 		{
 			"type": "http",
