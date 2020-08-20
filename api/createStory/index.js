@@ -1,8 +1,6 @@
 const CosmosClient = require('@azure/cosmos').CosmosClient;
 
 module.exports = async function (context, req) {
-	console.log(req);
-
 	const storyRequest = {
 		title: req.body.title,
 	};
@@ -20,13 +18,10 @@ module.exports = async function (context, req) {
 
 	try {
 		const { item } = await container.items.create(storyRequest);
-		context.res = { body: result.data };
-		console.log(context);
-		console.log(item);
+		context.res = { body: { id: item.id, message: 'You have successfully created a story!' } };
 		context.done();
 	} catch (error) {
-		context.res = { body: error };
-		console.log(context);
+		context.res = { body: 'Sorry, there was a problem' };
 		context.done();
 	}
 };

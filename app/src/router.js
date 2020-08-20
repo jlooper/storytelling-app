@@ -33,7 +33,7 @@ const router = new Router({
 			component: Create,
 		},
 		{
-			path: '/search',
+			path: '/search/:id',
 			name: 'search',
 			component: Search,
 		},

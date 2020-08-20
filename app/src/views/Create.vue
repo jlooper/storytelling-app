@@ -27,10 +27,14 @@
 					disabled
 				></b-step-item>
 			</b-steps>
+			<b-notification v-if="message" type="is-success" aria-close-label="Close notification">
+				{{ message }}
+			</b-notification>
 		</section>
 
 		<div class="box main-content">
 			<h1 class="title">Tell a Story</h1>
+			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
 			<hr />
 			<form @submit.prevent="submit">
 				<div class="field">
@@ -46,13 +50,14 @@
 				</div>
 			</form>
 		</div>
+		<div class="field is-grouped is-pulled-right">
+			<div class="control ">
+				<button @click="goToStoryBuilder()" :disabled="!proceed" class="button is-info">Continue</button>
+			</div>
+		</div>
 	</main>
 </template>
-<style scoped>
-p {
-	margin-bottom: 20px;
-}
-</style>
+
 <script>
 import { required } from 'vuelidate/lib/validators';
 
@@ -66,12 +71,19 @@ export default {
 	},
 	data() {
 		return {
-			submitStatus: null,
+			proceed: false,
 			isLoading: false,
+			isFullPage: false,
+			submitStatus: null,
+
 			message: '',
 			validClass: 'input',
 			title_field: null,
+			storyId: null,
+			storyTitle: null,
+			loadingComponent: null,
 			activeStep: 0,
+
 			showSocial: false,
 			isAnimated: true,
 			isRounded: true,
@@ -89,6 +101,7 @@ export default {
 	},
 	methods: {
 		submit() {
+			this.isLoading = true;
 			this.$v.$touch();
 			if (this.title_field == null) {
 				this.submitStatus = 'ERROR';
@@ -102,18 +115,37 @@ export default {
 						title: this.title_field,
 					})
 					.then((response) => {
+						this.isLoading = false;
 						console.log(response);
 						if (response.data.errorMessage == null) {
-							//this.$router.push({ path: "/login" });
+							this.message = response.data.message;
+							this.proceed = !this.proceed;
+							//todo - vuex
+							this.storyId = response.data.id;
+							this.storyTitle = response.data.title;
 						} else {
 							this.message = response.data.errorMessage;
 						}
 					})
 					.catch(function(error) {
+						this.isLoading = false;
 						console.log(error);
 					});
 			}
 		},
+		goToStoryBuilder() {
+			this.$router.push({
+				path: '/Search',
+				name: 'search',
+				params: { id: this.storyId, title: this.storyTitle },
+			});
+		},
 	},
 };
 </script>
+
+<style scoped>
+p {
+	margin-bottom: 20px;
+}
+</style>
