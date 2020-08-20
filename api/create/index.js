@@ -1,10 +1,12 @@
 const CosmosClient = require('@azure/cosmos').CosmosClient;
 
 module.exports = async function (context, req) {
-	const storyRequest = {};
-	storyRequest.title = req.body.title;
+	console.log(req);
 
-	console.log(storyRequest);
+	const storyRequest = {
+		title: req.body.title,
+	};
+
 	var cosmos_config = {};
 	cosmos_config.endpoint = process.env['VUE_APP_COSMOS_ENDPOINT'];
 	cosmos_config.key = process.env['VUE_APP_COSMOS_KEY'];
@@ -16,8 +18,15 @@ module.exports = async function (context, req) {
 	const database = client.database(databaseId);
 	const container = database.container(containerId);
 
-	await container.items.create(storyRequest).catch((err) => {
-		console.log(err);
+	try {
+		const { item } = await container.items.create(storyRequest);
+		context.res = { body: result.data };
+		console.log(context);
+		console.log(item);
 		context.done();
-	});
+	} catch (error) {
+		context.res = { body: error };
+		console.log(context);
+		context.done();
+	}
 };
