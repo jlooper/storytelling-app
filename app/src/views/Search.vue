@@ -158,7 +158,7 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
       this.isLoading = true;
       this.CooperHewittMuseumObjects = [];
       this.RijksMuseumObjects = [];
@@ -194,26 +194,18 @@ export default {
           },
         };
 
-        axios(chconfig)
-          .then((response) => {
-            this.isLoading = false;
-            console.log(response);
-            this.CooperHewittMuseumObjects = response.data.objects;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        const firstrequest = axios(chconfig).then((response) => {
+          this.CooperHewittMuseumObjects = response.data.objects;
+        });
 
-        axios(rijksconfig)
-          .then((response) => {
-            this.isLoading = false;
-            this.RijksMuseumObjects = response.data.artObjects;
-            console.log(this.RijksMuseumObjects);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        const secondrequest = axios(rijksconfig).then((response) => {
+          this.RijksMuseumObjects = response.data.artObjects;
+        });
 
+        axios
+          .all([axios(firstrequest), axios(secondrequest)])
+          .then((this.isLoading = false))
+          .catch((error) => console.log(error));
         setTimeout(() => {
           this.submitStatus = "OK";
           this.validClass = "input";
