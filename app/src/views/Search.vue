@@ -102,7 +102,7 @@
         <div class="card-content">
           <div class="media">
             <div class="media-left">
-              <figure class="image is-128x128" style="max-height: 100px">
+              <figure v-if="object.hasImage" class="image is-128x128" style="max-height: 100px">
                 <img :src="object.webImage.url" :alt="object.title" />
               </figure>
             </div>
