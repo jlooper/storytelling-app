@@ -52,12 +52,7 @@
         <div class="card-content">
           <div class="media">
             <div class="media-left">
-              <figure
-                class="image is-128x128"
-                style="max-height: 100px"
-                v-for="(o, index) in object.images"
-                :key="index"
-              >
+              <figure class="image is-128x128" v-for="(o, index) in object.images" :key="index">
                 <img v-if="index == 0" :src="o.b.url" :alt="object.title" />
               </figure>
             </div>
@@ -93,12 +88,7 @@
     <!--Rijks-->
     <hr />
     <div>
-      <div
-        class="box card m-5"
-        style="min-height: 250px"
-        v-for="(object, index) in RijksMuseumObjects"
-        :key="index"
-      >
+      <div class="box card m-5" v-for="(object, index) in RijksMuseumObjects" :key="index">
         <div class="card-content">
           <div class="media">
             <div class="media-left">
@@ -236,3 +226,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.image img {
+  width: auto;
+  max-height: 200px;
+}
+</style>
