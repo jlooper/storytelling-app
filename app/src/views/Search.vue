@@ -75,10 +75,11 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <router-link
+                <!--<router-link
                   class="button is-info"
-                  :to="{ name: 'storybuilder', params: { id: object.id, title: object.title } }"
-                >Add to Story</router-link>
+                  :to="{ name: 'storybuilder', params: { storyId: this.storyId, id: object.id, title: object.title } }"
+                >Add to Story</router-link>-->
+                <button class="button is-info" @click="addToStory(object)">Add to Story</button>
               </div>
             </div>
           </div>
@@ -110,10 +111,11 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <router-link
+                <!--<router-link
                   class="button is-info"
-                  :to="{ name: 'storybuilder', params: { id: object.id, title: object.title } }"
-                >Add to Story</router-link>
+                  :to="{ name: 'storybuilder', params: { storyId: this.storyId, id: object.id, title: object.title } }"
+                >Add to Story</router-link>-->
+                <button class="button is-info" @click="addToStory(object)">Add to Story</button>
               </div>
             </div>
           </div>
@@ -155,6 +157,7 @@ export default {
       mobileMode: "minimalist",
       prevIcon: "",
       nextIcon: "",
+      storyId: "",
     };
   },
   methods: {
@@ -212,9 +215,25 @@ export default {
         }, 500);
       }
     },
-  },
-  create() {
-    console.log(this.$route.params);
+    addToStory(object) {
+      console.log(object);
+      axios
+        .post("/api/stories/add", {
+          id: object.id,
+          storyId: this.$route.params.id,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.errorMessage == null) {
+            this.message = response.data.message;
+          } else {
+            this.message = response.data.errorMessage;
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
