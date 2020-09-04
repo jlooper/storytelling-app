@@ -27,24 +27,21 @@
 					disabled
 				></b-step-item>
 			</b-steps>
+			<h1 class="title has-text-info">{{ storyTitle }}</h1>
 		</section>
 		<div class="box main-content">
-			<h1 class="title">Search for items to add to your story</h1>
+			<h2 class="title">Search for items to add to this story</h2>
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
 			<hr />
 			<form @submit.prevent="submit">
 				<div class="field">
-					<label class="label">Objects</label>
 					<div class="control">
 						<input :class="validClass" v-model.trim="$v.search_field.$model" type="text" />
 					</div>
 				</div>
 				<div class="field is-grouped">
 					<div class="control">
-						<button class="button is-link">Submit</button>
-					</div>
-					<div class="control">
-						<button class="button is-primary" @click="publish()">Save Story</button>
+						<button class="button is-link">Search</button>
 					</div>
 				</div>
 			</form>
@@ -117,6 +114,11 @@
 				</div>
 			</div>
 		</div>-->
+		<div class="field is-grouped is-pulled-right">
+			<div class="control">
+				<button @click="goToStoryCustomizer()" class="button is-info">Continue</button>
+			</div>
+		</div>
 	</main>
 </template>
 <script>
@@ -133,7 +135,7 @@ export default {
 		return {
 			CooperHewittMuseumObjects: [],
 			RijksMuseumObjects: [],
-			items: [],
+			storyTitle: '',
 			submitStatus: null,
 			message: '',
 			validClass: 'input',
@@ -228,6 +230,9 @@ export default {
 					this.$buefy.toast.open(error);
 				});
 		},
+	},
+	created() {
+		this.storyTitle = this.$route.params.title;
 	},
 };
 </script>

@@ -18,7 +18,9 @@ module.exports = async function (context, req) {
 
 	try {
 		const { item } = await container.items.create(storyRequest);
-		context.res = { body: { id: item.id, message: 'You have successfully created a story!' } };
+		context.res = {
+			body: { id: item.id, title: req.body.title, message: 'You have successfully created a story!' },
+		};
 		context.done();
 	} catch (error) {
 		context.res = { body: 'Sorry, there was a problem' };
