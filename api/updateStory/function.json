@@ -15,7 +15,7 @@
 			"partitionKey": "title",
 			"databaseName": "storytelling",
 			"collectionName": "stories",
-			"createIfNotExists": false,
+			"createIfNotExists": true,
 			"connectionStringSetting": "VUE_APP_CONNECTION_STRING"
 		},
 		{

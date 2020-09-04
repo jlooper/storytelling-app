@@ -1,5 +1,4 @@
 module.exports = async function (context, req) {
-	console.log(req);
 	let docs = context.bindings.inputDocumentIn; // outputDocument
 	if (!req.body.id) {
 		context.res = {
@@ -19,7 +18,7 @@ module.exports = async function (context, req) {
 			...oldDoc,
 			...req.body,
 		};
-		context.bindings.outputDocument = updatedDoc;
+		context.bindings.inputDocumentOut = updatedDoc;
 		context.done();
 		context.res = {
 			headers: {

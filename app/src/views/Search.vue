@@ -43,11 +43,14 @@
 					<div class="control">
 						<button class="button is-link">Submit</button>
 					</div>
+					<div class="control">
+						<button class="button is-primary" @click="publish()">Save Story</button>
+					</div>
 				</div>
 			</form>
 		</div>
 
-		<div>
+		<div class="is-pulled-left">
 			<div class="box card m-5" v-for="(object, index) in CooperHewittMuseumObjects" :key="index">
 				<div class="card-content">
 					<div class="media">
@@ -74,20 +77,19 @@
 						</div>
 						<div class="field is-grouped">
 							<div class="control">
-								<!--<router-link
-                  class="button is-info"
-                  :to="{ name: 'storybuilder', params: { storyId: this.storyId, id: object.id, title: object.title } }"
-                >Add to Story</router-link>-->
-								<button class="button is-info" @click="addToStory(object)">Add to Story</button>
+								<button class="button is-info" @click="addToCooperHewittStory(object)">
+									Add to Story
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<!--Rijks-->
-		<hr />
-		<div>
+
+		<!--<div>
 			<div class="box card m-5" v-for="(object, index) in RijksMuseumObjects" :key="index">
 				<div class="card-content">
 					<div class="media">
@@ -98,9 +100,9 @@
 						</div>
 						<div class="media-content">
 							<p>
-								<a :href="object.links.web != ''" target="_blank" class="title is-4">{{
-									object.title
-								}}</a>
+								<a :href="object.links.web != ''" target="_blank" class="title is-4">
+									{{ object.title }}
+								</a>
 							</p>
 							<p>Principal or First Maker: {{ object.principalOrFirstMaker }}</p>
 							<p v-for="p in object.productionPlaces" :key="p.id">{{ p }}</p>
@@ -108,17 +110,13 @@
 						</div>
 						<div class="field is-grouped">
 							<div class="control">
-								<!--<router-link
-                  class="button is-info"
-                  :to="{ name: 'storybuilder', params: { storyId: this.storyId, id: object.id, title: object.title } }"
-                >Add to Story</router-link>-->
 								<button class="button is-info" @click="addToStory(object)">Add to Story</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</main>
 </template>
 <script>
@@ -182,7 +180,7 @@ export default {
 					},
 				};
 
-				var rijksconfig = {
+				/*var rijksconfig = {
 					method: 'get',
 					url: 'https://www.rijksmuseum.nl/api/nl/collection?key=PqVYN24g',
 					params: {
@@ -192,17 +190,17 @@ export default {
 						st: 'Objects',
 					},
 				};
-
+*/
 				const firstrequest = axios(chconfig).then((response) => {
 					this.CooperHewittMuseumObjects = response.data.objects;
 				});
 
-				const secondrequest = axios(rijksconfig).then((response) => {
+				/*const secondrequest = axios(rijksconfig).then((response) => {
 					this.RijksMuseumObjects = response.data.artObjects;
-				});
+				});*/
 
 				axios
-					.all([axios(firstrequest), axios(secondrequest)])
+					.all([axios(firstrequest) /*, axios(secondrequest)*/])
 					.then((this.isLoading = false))
 					.catch((error) => console.log(error));
 				setTimeout(() => {
@@ -211,22 +209,31 @@ export default {
 				}, 500);
 			}
 		},
-		addToStory(object) {
-			axios
-				.put('/api/update', {
-					id: this.$route.params.id,
-					item: object,
-				})
-				.then((response) => {
-					if (response.data.errorMessage == null) {
-						this.message = response.data.message;
-					} else {
-						this.message = response.data.errorMessage;
-					}
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
+		addToCooperHewittStory(object) {
+			this.items.push({ id: object.id, title: object.title });
+			this.$buefy.toast.open('Item added to story');
+		},
+
+		publish() {
+			if (this.items.length > 0) {
+				axios
+					.put('/api/update', {
+						id: this.$route.params.id,
+						items: this.items,
+					})
+					.then((response) => {
+						if (response.data.errorMessage == null) {
+							this.$buefy.toast.open(response.data.message);
+						} else {
+							this.$buefy.toast.open(response.data.message);
+						}
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			} else {
+				this.$buefy.toast.open('Add items to the story before saving');
+			}
 		},
 	},
 };
