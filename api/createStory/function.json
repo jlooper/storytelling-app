@@ -6,7 +6,7 @@
 			"direction": "in",
 			"name": "req",
 			"methods": ["post"],
-			"route": "stories/create"
+			"route": "create"
 		},
 		{
 			"type": "http",

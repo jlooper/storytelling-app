@@ -138,13 +138,13 @@ export default {
     return {
       CooperHewittMuseumObjects: [],
       RijksMuseumObjects: [],
+      items: [],
       submitStatus: null,
       message: "",
       validClass: "input",
       search_field: null,
       isLoading: false,
       isFullPage: false,
-
       activeStep: 1,
       showSocial: false,
       isAnimated: true,
@@ -216,14 +216,13 @@ export default {
       }
     },
     addToStory(object) {
-      console.log(object);
       axios
-        .post("/api/stories/add", {
-          id: object.id,
-          storyId: this.$route.params.id,
+        .put("/api/update", {
+          id: this.$route.params.id,
+          title: object.title,
+          item: object,
         })
         .then((response) => {
-          console.log(response);
           if (response.data.errorMessage == null) {
             this.message = response.data.message;
           } else {
