@@ -77,7 +77,7 @@
 						</div>
 						<div class="field is-grouped">
 							<div class="control">
-								<button class="button is-info" @click="addToCooperHewittStory(object)">
+								<button class="button is-info" @click="createStoryItem(object)">
 									Add to Story
 								</button>
 							</div>
@@ -209,31 +209,24 @@ export default {
 				}, 500);
 			}
 		},
-		addToCooperHewittStory(object) {
-			this.items.push({ id: object.id, title: object.title });
-			this.$buefy.toast.open('Item added to story');
-		},
 
-		publish() {
-			if (this.items.length > 0) {
-				axios
-					.put('/api/update', {
-						id: this.$route.params.id,
-						items: this.items,
-					})
-					.then((response) => {
-						if (response.data.errorMessage == null) {
-							this.$buefy.toast.open(response.data.message);
-						} else {
-							this.$buefy.toast.open(response.data.message);
-						}
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
-			} else {
-				this.$buefy.toast.open('Add items to the story before saving');
-			}
+		createStoryItem(object) {
+			axios
+				.post('/api/createStoryItem', {
+					storyId: this.$route.params.id,
+					item: object,
+				})
+
+				.then((response) => {
+					if (response.data.errorMessage == null) {
+						this.$buefy.toast.open(response.data.message);
+					} else {
+						this.$buefy.toast.open(response.data.message);
+					}
+				})
+				.catch(function(error) {
+					this.$buefy.toast.open(error);
+				});
 		},
 	},
 };

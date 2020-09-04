@@ -107,7 +107,7 @@ export default {
 				this.validClass = 'input';
 				//submit title of story
 				axios
-					.post('/api/create', {
+					.post('/api/createStory', {
 						title: this.title_field,
 					})
 					.then((response) => {

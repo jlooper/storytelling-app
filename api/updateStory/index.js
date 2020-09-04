@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
 	} else {
 		let updatedDoc = {
 			...oldDoc,
-			...req.body,
+			...req.body.items,
 		};
 		context.bindings.inputDocumentOut = updatedDoc;
 		context.done();

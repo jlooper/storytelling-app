@@ -30,5 +30,5 @@
 			"CreateLeaseCollectionIfNotExists": true
 		}
 	],
-	"disabled": false
+	"disabled": true
 }
