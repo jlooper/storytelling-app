@@ -1,18 +1,26 @@
 {
 	"bindings": [
 		{
-			"authLevel": "function",
+			"authLevel": "anonymous",
 			"type": "httpTrigger",
 			"direction": "in",
 			"name": "req",
-			"methods": ["put"],
 			"route": "update"
 		},
 		{
 			"type": "http",
 			"direction": "out",
 			"name": "res"
+		},
+		{
+			"type": "cosmosDB",
+			"name": "story",
+			"databaseName": "storytelling",
+			"collectionName": "stories",
+			"createIfNotExists": false,
+			"connectionStringSetting": "VUE_APP_CONNECTION_STRING",
+			"direction": "out"
 		}
 	],
-	"scriptFile": "index.js"
+	"disabled": false
 }
