@@ -2,24 +2,32 @@
 	"bindings": [
 		{
 			"authLevel": "anonymous",
+			"name": "req",
 			"type": "httpTrigger",
 			"direction": "in",
-			"name": "req",
+			"methods": ["put"],
 			"route": "update"
 		},
 		{
-			"type": "http",
-			"direction": "out",
-			"name": "res"
-		},
-		{
 			"type": "cosmosDB",
-			"name": "story",
+			"direction": "out",
+			"name": "inputDocumentOut",
+			"partitionKey": "title",
 			"databaseName": "storytelling",
 			"collectionName": "stories",
 			"createIfNotExists": false,
+			"connectionStringSetting": "VUE_APP_CONNECTION_STRING"
+		},
+		{
+			"type": "cosmosDB",
+			"direction": "in",
+			"createIfNotExists": false,
+			"partitionKey": "title",
+			"name": "inputDocumentIn",
+			"databaseName": "storytelling",
+			"collectionName": "stories",
 			"connectionStringSetting": "VUE_APP_CONNECTION_STRING",
-			"direction": "out"
+			"CreateLeaseCollectionIfNotExists": true
 		}
 	],
 	"disabled": false
