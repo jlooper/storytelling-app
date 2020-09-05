@@ -4,7 +4,8 @@ import Router from 'vue-router';
 import About from '@/views/About.vue';
 import Home from '@/views/Home.vue';
 import Search from '@/views/Search.vue';
-import Storybuilder from '@/views/Storybuilder.vue';
+import StoryBuilder from '@/views/StoryBuilder.vue';
+import StoryCustomizer from '@/views/StoryCustomizer.vue';
 import Create from '@/views/Create.vue';
 
 import Lost from '@/components/Lost.vue';
@@ -46,7 +47,12 @@ const router = new Router({
 		{
 			path: '/storybuilder/:id',
 			name: 'storybuilder',
-			component: Storybuilder,
+			component: StoryBuilder,
+		},
+		{
+			path: '/storycustomizer/:id',
+			name: 'storycustomizer',
+			component: StoryCustomizer,
 		},
 		/*{
 			path: '/profile',

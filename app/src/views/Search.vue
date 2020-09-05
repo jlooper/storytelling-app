@@ -1,5 +1,5 @@
 <template>
-	<main class="column is-four-fifths main is-pulled-right">
+	<main class="column is-four-fifths main is-pulled-right pb-100">
 		<section>
 			<b-steps
 				v-model="activeStep"
@@ -230,8 +230,16 @@ export default {
 					this.$buefy.toast.open(error);
 				});
 		},
+		goToStoryCustomizer() {
+			this.$router.push({
+				path: '/StoryCustomizer',
+				name: 'storycustomizer',
+				params: { id: this.$route.params.id, title: this.storyTitle },
+			});
+		},
 	},
 	created() {
+		this.storyId = this.$route.params.id;
 		this.storyTitle = this.$route.params.title;
 	},
 };

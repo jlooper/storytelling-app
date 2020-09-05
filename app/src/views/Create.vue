@@ -40,6 +40,18 @@
 						<input :class="validClass" v-model.trim="$v.title_field.$model" type="text" />
 					</div>
 				</div>
+				<picture-input
+					ref="pictureInput"
+					@change="onChange"
+					width="600"
+					height="444"
+					accept="image/jpeg, image/png"
+					:removable="true"
+					:customStrings="{
+						upload: '<h1>Sorry!</h1>',
+						drag: 'Upload an image',
+					}"
+				></picture-input>
 				<div class="field is-grouped">
 					<div class="control">
 						<button class="button is-link">Submit</button>
@@ -57,6 +69,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators';
+import PictureInput from 'vue-picture-input';
 
 import axios from 'axios';
 
@@ -66,13 +79,15 @@ export default {
 			required,
 		},
 	},
+	components: {
+		PictureInput,
+	},
 	data() {
 		return {
 			proceed: false,
 			isLoading: false,
 			isFullPage: false,
 			submitStatus: null,
-
 			validClass: 'input',
 			title_field: null,
 			storyId: null,
@@ -93,9 +108,49 @@ export default {
 			nextIcon: 'chevron-right',
 			labelPosition: 'bottom',
 			mobileMode: 'minimalist',
+
+			image: null,
+			uploading: false,
+			uploadError: false,
+			imageInfo: null,
 		};
 	},
 	methods: {
+		onChange(image) {
+			this.ctx = this.$refs.pictureInput.$refs.previewCanvas.getContext('2d');
+			this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+			let cleanedImage = image.replace('data:image/png;base64,', '');
+			console.log('New picture selected!', cleanedImage);
+			if (cleanedImage) {
+				this.upload(cleanedImage);
+			} else {
+				console.log('FileReader API not supported');
+			}
+		},
+		upload(file) {
+			if (file) {
+				this.imageInfo = null;
+				this.uploading = true;
+				this.uploadError = false;
+				axios
+					.post('/api/uploadStoryImage', file)
+					.then((response) => {
+						if (response.status === 200) {
+							console.log('Image uploaded successfully');
+							this.uploading = false;
+							this.imageInfo = JSON.parse(response.data);
+						} else {
+							this.uploadError = true;
+						}
+					})
+					.catch((err) => {
+						this.uploading = false;
+						this.uploadError = true;
+						console.error(err);
+					});
+			}
+		},
+
 		submit() {
 			this.isLoading = true;
 			this.$v.$touch();

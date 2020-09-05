@@ -1,0 +1,24 @@
+{
+	"bindings": [
+		{
+			"authLevel": "function",
+			"name": "req",
+			"type": "httpTrigger",
+			"direction": "in",
+			"methods": ["get", "post"]
+		},
+		{
+			"name": "$return",
+			"type": "http",
+			"direction": "out"
+		},
+		{
+			"type": "blob",
+			"name": "outputBlob",
+			"path": "outcontainer/{rand-guid}",
+			"connection": "VUE_APP_STORAGE_CONNECTION_STRING",
+			"direction": "out"
+		}
+	],
+	"disabled": false
+}
