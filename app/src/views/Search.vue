@@ -1,35 +1,8 @@
 <template>
 	<main class="column is-four-fifths main is-pulled-right pb-100">
-		<section>
-			<b-steps
-				v-model="activeStep"
-				:animated="isAnimated"
-				:rounded="isRounded"
-				:has-navigation="hasNavigation"
-				:icon-prev="prevIcon"
-				:icon-next="nextIcon"
-				:label-position="labelPosition"
-				:mobile-mode="mobileMode"
-			>
-				<b-step-item step="1" label="Create A Story" :clickable="isStepsClickable"></b-step-item>
-
-				<b-step-item
-					step="2"
-					label="Select Items for Story"
-					:clickable="isStepsClickable"
-					:type="{ 'is-success': isProfileSuccess }"
-				></b-step-item>
-
-				<b-step-item
-					:step="showSocial ? '4' : '3'"
-					label="Manage Layout"
-					:clickable="isStepsClickable"
-					disabled
-				></b-step-item>
-			</b-steps>
-			<h1 class="title has-text-info">{{ storyTitle }}</h1>
-		</section>
+		<Steps activeStep="2" />
 		<section class="box main-content">
+			<h1 class="title has-text-info">{{ storyTitle }}</h1>
 			<h2 class="title">Search for items to add to this story</h2>
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
 			<hr />
@@ -121,12 +94,15 @@
 <script>
 var axios = require('axios');
 import { required } from 'vuelidate/lib/validators';
-
+import Steps from '@/components/Steps';
 export default {
 	validations: {
 		search_field: {
 			required,
 		},
+	},
+	components: {
+		Steps,
 	},
 	data() {
 		return {
@@ -139,18 +115,7 @@ export default {
 			search_field: null,
 			isLoading: false,
 			isFullPage: false,
-			activeStep: 1,
-			showSocial: false,
-			isAnimated: true,
-			isRounded: true,
-			isStepsClickable: false,
-			hasNavigation: false,
-			customNavigation: false,
-			isProfileSuccess: false,
-			labelPosition: 'bottom',
-			mobileMode: 'minimalist',
-			prevIcon: '',
-			nextIcon: '',
+
 			storyId: '',
 		};
 	},

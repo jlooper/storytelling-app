@@ -1,34 +1,7 @@
 <template>
 	<main class="column is-four-fifths main is-pulled-right">
-		<section>
-			<b-steps
-				v-model="activeStep"
-				:animated="isAnimated"
-				:rounded="isRounded"
-				:has-navigation="hasNavigation"
-				:icon-prev="prevIcon"
-				:icon-next="nextIcon"
-				:label-position="labelPosition"
-				:mobile-mode="mobileMode"
-			>
-				<b-step-item step="1" label="Create A Story" :clickable="isStepsClickable"></b-step-item>
-
-				<b-step-item
-					step="2"
-					label="Select Items for Story"
-					:clickable="isStepsClickable"
-					:type="{ 'is-success': isProfileSuccess }"
-				></b-step-item>
-
-				<b-step-item
-					:step="showSocial ? '4' : '3'"
-					label="Manage Layout"
-					:clickable="isStepsClickable"
-					disabled
-				></b-step-item>
-			</b-steps>
-		</section>
-
+		<!--breadcrumbs-->
+		<Steps activeStep="1" />
 		<div class="box main-content">
 			<h1 class="title">Tell a Story</h1>
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
@@ -93,6 +66,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators';
 //import PictureInput from 'vue-picture-input';
+import Steps from '@/components/Steps';
 
 import axios from 'axios';
 
@@ -104,7 +78,9 @@ export default {
 	},
 	components: {
 		//PictureInput,
+		Steps,
 	},
+
 	data() {
 		return {
 			dropFiles: [],
@@ -117,21 +93,6 @@ export default {
 			storyId: null,
 			storyTitle: null,
 			loadingComponent: null,
-			activeStep: 0,
-
-			showSocial: false,
-			isAnimated: true,
-			isRounded: true,
-			isStepsClickable: false,
-
-			hasNavigation: false,
-			customNavigation: false,
-			isProfileSuccess: false,
-
-			prevIcon: 'chevron-left',
-			nextIcon: 'chevron-right',
-			labelPosition: 'bottom',
-			mobileMode: 'minimalist',
 
 			image: null,
 			uploading: false,
