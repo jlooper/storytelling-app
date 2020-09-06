@@ -4,7 +4,6 @@ import Router from 'vue-router';
 import About from '@/views/About.vue';
 import Home from '@/views/Home.vue';
 import Search from '@/views/Search.vue';
-import StoryBuilder from '@/views/StoryBuilder.vue';
 import StoryCustomizer from '@/views/StoryCustomizer.vue';
 import Create from '@/views/Create.vue';
 
@@ -44,11 +43,7 @@ const router = new Router({
 			name: 'about',
 			component: About,
 		},
-		{
-			path: '/storybuilder/:id',
-			name: 'storybuilder',
-			component: StoryBuilder,
-		},
+
 		{
 			path: '/storycustomizer/:id',
 			name: 'storycustomizer',

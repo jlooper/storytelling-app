@@ -40,18 +40,39 @@
 						<input :class="validClass" v-model.trim="$v.title_field.$model" type="text" />
 					</div>
 				</div>
-				<picture-input
+				<!--<picture-input
 					ref="pictureInput"
 					@change="onChange"
-					width="600"
-					height="444"
+					width="300"
+					height="200"
 					accept="image/jpeg, image/png"
 					:removable="true"
 					:customStrings="{
 						upload: '<h1>Sorry!</h1>',
 						drag: 'Upload an image',
 					}"
-				></picture-input>
+				></picture-input>-->
+				<section>
+					<b-field>
+						<b-upload v-model="dropFiles" drag-drop>
+							<section class="section">
+								<div class="content has-text-centered">
+									<p>
+										<b-icon icon="upload" size="is-large"> </b-icon>
+									</p>
+									<p>Drop your files here or click to upload</p>
+								</div>
+							</section>
+						</b-upload>
+					</b-field>
+
+					<div class="tags">
+						<span v-for="(file, index) in dropFiles" :key="index" class="tag is-primary">
+							{{ file.name }}
+							<button class="delete is-small" type="button" @click="deleteDropFile(index)"></button>
+						</span>
+					</div>
+				</section>
 				<div class="field is-grouped">
 					<div class="control">
 						<button class="button is-link">Submit</button>
@@ -60,6 +81,8 @@
 			</form>
 		</div>
 		<div class="field is-grouped is-pulled-right">
+			<button type="button" @click="upload()">Upload</button>
+
 			<div class="control">
 				<button @click="goToStoryBuilder()" :disabled="!proceed" class="button is-info">Continue</button>
 			</div>
@@ -69,7 +92,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators';
-import PictureInput from 'vue-picture-input';
+//import PictureInput from 'vue-picture-input';
 
 import axios from 'axios';
 
@@ -80,10 +103,11 @@ export default {
 		},
 	},
 	components: {
-		PictureInput,
+		//PictureInput,
 	},
 	data() {
 		return {
+			dropFiles: [],
 			proceed: false,
 			isLoading: false,
 			isFullPage: false,
@@ -116,24 +140,30 @@ export default {
 		};
 	},
 	methods: {
-		onChange(image) {
+		deleteDropFile(index) {
+			this.dropFiles.splice(index, 1);
+		},
+		/*onChange(image) {
 			this.ctx = this.$refs.pictureInput.$refs.previewCanvas.getContext('2d');
 			this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 			let cleanedImage = image.replace('data:image/png;base64,', '');
-			console.log('New picture selected!', cleanedImage);
+			console.log('New picture selected!');
 			if (cleanedImage) {
+				console.log(cleanedImage);
 				this.upload(cleanedImage);
 			} else {
 				console.log('FileReader API not supported');
 			}
-		},
-		upload(file) {
+		},*/
+		upload() {
+			let file = this.dropFiles;
+			console.log(file);
 			if (file) {
 				this.imageInfo = null;
 				this.uploading = true;
 				this.uploadError = false;
 				axios
-					.post('/api/uploadStoryImage', file)
+					.put('/api/uploadStoryImage', file)
 					.then((response) => {
 						if (response.status === 200) {
 							console.log('Image uploaded successfully');

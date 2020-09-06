@@ -29,7 +29,7 @@
 			</b-steps>
 			<h1 class="title has-text-info">{{ storyTitle }}</h1>
 		</section>
-		<div class="box main-content">
+		<section class="box main-content">
 			<h2 class="title">Search for items to add to this story</h2>
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
 			<hr />
@@ -45,8 +45,10 @@
 					</div>
 				</div>
 			</form>
-		</div>
-
+		</section>
+		<section class="is-pulled-right mb-20">
+			<button @click="goToStoryCustomizer()" class="button is-link">Continue</button>
+		</section>
 		<div class="is-pulled-left">
 			<div class="box card m-5" v-for="(object, index) in CooperHewittMuseumObjects" :key="index">
 				<div class="card-content">
@@ -114,11 +116,6 @@
 				</div>
 			</div>
 		</div>-->
-		<div class="field is-grouped is-pulled-right">
-			<div class="control">
-				<button @click="goToStoryCustomizer()" class="button is-info">Continue</button>
-			</div>
-		</div>
 	</main>
 </template>
 <script>
