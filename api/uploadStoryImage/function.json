@@ -1,24 +1,25 @@
 {
 	"bindings": [
 		{
-			"authLevel": "function",
-			"name": "req",
 			"type": "httpTrigger",
+			"name": "req",
 			"direction": "in",
-			"methods": ["get", "post", "put"]
+			"dataType": "binary",
+			"methods": [
+				"post"
+			]
 		},
 		{
-			"name": "$return",
 			"type": "http",
-			"direction": "out"
+			"direction": "out",
+			"name": "response"
 		},
 		{
+			"name": "storage",
 			"type": "blob",
-			"name": "outputBlob",
-			"path": "outcontainer/{rand-guid}",
-			"connection": "VUE_APP_STORAGE_CONNECTION_STRING",
-			"direction": "out"
+			"path": "images/{rand-guid}.jpg",
+			"direction": "out",
+			"connection": "VUE_APP_STORAGE_CONNECTION_STRING"
 		}
-	],
-	"disabled": false
+	]
 }
