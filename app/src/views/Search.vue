@@ -7,11 +7,14 @@
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
 			<hr />
 			<form @submit.prevent="submit">
-				<div class="field">
-					<div class="control">
-						<input :class="validClass" v-model.trim="$v.search_field.$model" type="text" />
-					</div>
-				</div>
+				<b-field label="Search">
+					<b-input
+						v-model.trim="search_field"
+						required
+						validation-message="Search field is required"
+						type="text"
+					></b-input>
+				</b-field>
 				<div class="field is-grouped">
 					<div class="control">
 						<button class="button is-link">Search</button>
@@ -93,14 +96,8 @@
 </template>
 <script>
 var axios = require('axios');
-import { required } from 'vuelidate/lib/validators';
 import Steps from '@/components/Steps';
 export default {
-	validations: {
-		search_field: {
-			required,
-		},
-	},
 	components: {
 		Steps,
 	},
@@ -109,9 +106,7 @@ export default {
 			CooperHewittMuseumObjects: [],
 			RijksMuseumObjects: [],
 			storyTitle: '',
-			submitStatus: null,
 			message: '',
-			validClass: 'input',
 			search_field: null,
 			isLoading: false,
 			isFullPage: false,
@@ -124,27 +119,19 @@ export default {
 			this.isLoading = true;
 			this.CooperHewittMuseumObjects = [];
 			this.RijksMuseumObjects = [];
-			this.$v.$touch();
-			if (this.search_field == null) {
-				this.submitStatus = 'ERROR';
-				this.validClass = 'input is-danger';
-			} else {
-				this.submitStatus = 'PENDING';
-				this.validClass = 'input';
-				//start search
-				var chconfig = {
-					method: 'get',
-					url: 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.search.objects',
-					headers: {},
-					params: {
-						access_token: '5a3c42c653014805fd1e06902631596f',
-						query: this.search_field,
-						page: 1,
-						per_page: 10,
-					},
-				};
+			var chconfig = {
+				method: 'get',
+				url: 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.search.objects',
+				headers: {},
+				params: {
+					access_token: '5a3c42c653014805fd1e06902631596f',
+					query: this.search_field,
+					page: 1,
+					per_page: 10,
+				},
+			};
 
-				/*var rijksconfig = {
+			/*var rijksconfig = {
 					method: 'get',
 					url: 'https://www.rijksmuseum.nl/api/nl/collection?key=PqVYN24g',
 					params: {
@@ -155,23 +142,18 @@ export default {
 					},
 				};
 */
-				const firstrequest = axios(chconfig).then((response) => {
-					this.CooperHewittMuseumObjects = response.data.objects;
-				});
+			const firstrequest = axios(chconfig).then((response) => {
+				this.CooperHewittMuseumObjects = response.data.objects;
+			});
 
-				/*const secondrequest = axios(rijksconfig).then((response) => {
+			/*const secondrequest = axios(rijksconfig).then((response) => {
 					this.RijksMuseumObjects = response.data.artObjects;
 				});*/
 
-				axios
-					.all([axios(firstrequest) /*, axios(secondrequest)*/])
-					.then((this.isLoading = false))
-					.catch((error) => console.log(error));
-				setTimeout(() => {
-					this.submitStatus = 'OK';
-					this.validClass = 'input';
-				}, 500);
-			}
+			axios
+				.all([axios(firstrequest) /*, axios(secondrequest)*/])
+				.then((this.isLoading = false))
+				.catch((error) => console.log(error));
 		},
 
 		createStoryItem(object) {

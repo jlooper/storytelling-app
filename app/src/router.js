@@ -6,10 +6,11 @@ import Home from '@/views/Home.vue';
 import Search from '@/views/Search.vue';
 import StoryCustomizer from '@/views/StoryCustomizer.vue';
 import Create from '@/views/Create.vue';
+import Profile from '@/views/Profile.vue';
 
 import Lost from '@/components/Lost.vue';
 
-//import store from './store.js';
+import store from './store.js';
 
 Vue.use(Router);
 
@@ -49,14 +50,14 @@ const router = new Router({
 			name: 'storycustomizer',
 			component: StoryCustomizer,
 		},
-		/*{
+		{
 			path: '/profile',
 			name: 'profile',
 			component: Profile,
 			meta: {
 				requiresAuth: true,
 			},
-		},*/
+		},
 		{
 			path: '/error',
 			name: 'error',
@@ -66,10 +67,10 @@ const router = new Router({
 });
 router.beforeEach((to, from, next) => {
 	if (to.matched.some((record) => record.meta.requiresAuth)) {
-		/*if (store.getters.isLoggedIn) {
+		if (store.getters.isLoggedIn) {
 			next();
 			return;
-		}*/
+		}
 		next('/');
 	} else {
 		next();

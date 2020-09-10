@@ -1,25 +1,20 @@
 {
-	"bindings": [
-		{
-			"type": "httpTrigger",
-			"name": "req",
-			"direction": "in",
-			"dataType": "binary",
-			"methods": [
-				"post"
-			]
-		},
-		{
-			"type": "http",
-			"direction": "out",
-			"name": "response"
-		},
-		{
-			"name": "storage",
-			"type": "blob",
-			"path": "images/{rand-guid}.jpg",
-			"direction": "out",
-			"connection": "VUE_APP_STORAGE_CONNECTION_STRING"
-		}
-	]
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "name": "req",
+      "direction": "in",
+      "dataType": "binary",
+      "methods": [
+        "post",
+        "put"
+      ],
+      "authLevel": "anonymous"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ]
 }
