@@ -1,19 +1,12 @@
 <template>
 	<main class="column is-four-fifths main is-pulled-right">
-		<div class="box main-content">
-			<h1 class="title">Stories</h1>
+		<h1 class="title">Stories</h1>
+		<div class="box main-content columns">
 			<hr />
-			<div class="card" v-for="story in stories" :key="story.id">
+			<div class="card column" v-for="story in stories" :key="story.id">
 				<div class="card-image">
 					<figure class="image is-4by3">
-						<img
-							:src="
-								'https://cooperhewittstorage.blob.core.windows.net/images/' +
-									story.imageUrl +
-									'?sp=rl&st=2020-09-11T02:45:14Z&se=2021-12-12T02:45:00Z&sv=2019-12-12&sr=c&sig=ineO%2FmFbKg2t5nFyfg9AO%2Ft4wTDvDrKdBPoPjhA0%2F78%3D'
-							"
-							:alt="story.title"
-						/>
+						<img :src="buildImageUrl(story.imageUrl)" :alt="story.title" />
 					</figure>
 				</div>
 				<div class="card-content">
@@ -35,6 +28,18 @@ export default {
 		return {
 			stories: [],
 		};
+	},
+	methods: {
+		buildImageUrl(url) {
+			//build the url for access to image
+			let string = url;
+			let imageName = string.substring(string.lastIndexOf('/') + 1);
+			return (
+				'https://cooperhewittstorage.blob.core.windows.net/images/' +
+				imageName +
+				'?sp=rl&st=2020-09-11T02:45:14Z&se=2021-12-12T02:45:00Z&sv=2019-12-12&sr=c&sig=ineO%2FmFbKg2t5nFyfg9AO%2Ft4wTDvDrKdBPoPjhA0%2F78%3D'
+			);
+		},
 	},
 	created() {
 		axios
