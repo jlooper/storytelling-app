@@ -4,18 +4,13 @@
 			<nav class="menu">
 				<ul class="menu-list">
 					<li>
-						<router-link class="navbar-item" :to="'/profile'">
+						<router-link class="navbar-item" :to="'/admin/profile'">
 							<i class="fas fa-user"></i> My Profile
 						</router-link>
 					</li>
 					<li>
-						<router-link class="navbar-item" :to="'/stories'">
+						<router-link class="navbar-item" :to="'/admin/stories'">
 							<i class="fas fa-book"></i> My Stories
-						</router-link>
-					</li>
-					<li>
-						<router-link class="navbar-item" :to="'/search'">
-							<i class="fas fa-search"></i> Search
 						</router-link>
 					</li>
 				</ul>
@@ -25,10 +20,10 @@
 </template>
 
 <script>
-//import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex';
 export default {
 	computed: {
-		//...mapState(["user"])
+		...mapState(['user']),
 		showMenu() {
 			return this.$router.app._route.name !== 'home';
 		},
@@ -37,7 +32,7 @@ export default {
 		//currentUser: firebase.auth().currentUser,
 	}),
 	methods: {
-		//...mapActions(['fetchUser', 'fetchStudents', 'fetchPractices']),
+		...mapActions(['fetchUser']),
 	},
 };
 </script>

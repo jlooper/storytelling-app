@@ -5,10 +5,9 @@
 		<div class="box main-content">
 			<h1 class="title">Tell a Story</h1>
 			<b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
-			<hr />
 
 			<section>
-				<form @submit.prevent="upload">
+				<!--<form @submit.prevent="upload">
 					<div v-if="!image">
 						<input
 							class="input is-primary"
@@ -23,11 +22,26 @@
 						<button class="button is-warning" @click="removeImage">Remove image</button>
 						<input class="button is-link" type="submit" value="Upload Image" name="submit" />
 					</div>
-				</form>
+				</form>-->
 			</section>
 			<hr />
 			<section>
 				<form @submit.prevent="submit">
+					<div v-if="!image">
+						<input
+							class="input is-primary"
+							type="file"
+							name="filename"
+							id="filename"
+							@change="onFileChange"
+						/>
+					</div>
+					<div v-else>
+						<img :src="image" />
+						<button class="button is-warning" @click="removeImage">Remove image</button>
+						<!--<input class="button is-link" type="submit" value="Upload Image" name="submit" />-->
+					</div>
+					<hr />
 					<b-field label="Story Title">
 						<b-input
 							v-model.trim="title_field"
@@ -96,35 +110,31 @@ export default {
 		removeImage: function() {
 			this.image = '';
 		},
-		upload() {
+		submit() {
 			const formData = new FormData();
 			formData.append('file', this.file);
-			console.log(formData);
 			this.isLoading = true;
 			axios
 				.post('/api/uploadStoryImage', formData)
 				.then((response) => {
-					this.isLoading = false;
 					if (response.status === 200) {
-						console.log('Image uploaded successfully');
-						this.uploading = false;
-						//this.imageInfo = JSON.parse(response.data);
+						this.$buefy.toast.open(response.data.message);
+						this.createStoryTitle(response.data.url);
 					} else {
 						this.uploadError = true;
 					}
 				})
 				.catch((err) => {
-					this.uploading = false;
 					this.uploadError = true;
 					console.error(err);
 				});
 		},
 
-		submit() {
-			this.isLoading = true;
+		createStoryTitle(URL) {
 			axios
 				.post('/api/createStory', {
 					title: this.title_field,
+					imageUrl: URL,
 				})
 				.then((response) => {
 					this.isLoading = false;

@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="column is-half is-centered">
-						<img src="../assets/home.png" />
+						<img src="@/assets/home.png" />
 					</div>
 				</div>
 			</div>

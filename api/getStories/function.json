@@ -1,0 +1,25 @@
+{
+	"disabled": false,
+	"bindings": [
+		{
+			"authLevel": "anonymous",
+			"type": "httpTrigger",
+			"direction": "in",
+			"name": "req",
+			"route": "getStories"
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "res"
+		},
+		{
+			"type": "cosmosDB",
+			"name": "stories",
+			"databaseName": "storytelling",
+			"collectionName": "stories",
+			"connectionStringSetting": "VUE_APP_CONNECTION_STRING",
+			"direction": "in"
+		}
+	]
+}

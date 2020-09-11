@@ -2,11 +2,13 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import About from '@/views/About.vue';
-import Home from '@/views/Home.vue';
-import Search from '@/views/Search.vue';
-import StoryCustomizer from '@/views/StoryCustomizer.vue';
-import Create from '@/views/Create.vue';
-import Profile from '@/views/Profile.vue';
+import Stories from '@/views/Stories.vue';
+import Story from '@/views/Story.vue';
+import Home from '@/views/admin/Home.vue';
+import Search from '@/views/admin/Search.vue';
+import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
+import Create from '@/views/admin/Create.vue';
+import Profile from '@/views/admin/Profile.vue';
 
 import Lost from '@/components/Lost.vue';
 
@@ -20,23 +22,29 @@ const router = new Router({
 	routes: [
 		{
 			path: '/',
+			name: 'stories',
+			component: Stories,
+		},
+		{
+			path: '/admin/home',
 			name: 'home',
 			component: Home,
 		},
 		{
-			path: '/home',
-			name: 'home',
-			component: Home,
-		},
-		{
-			path: '/create',
+			path: '/admin/create',
 			name: 'create',
 			component: Create,
 		},
 		{
-			path: '/search/:id',
+			path: '/admin/search/:id',
 			name: 'search',
 			component: Search,
+		},
+
+		{
+			path: '/story/:id',
+			name: 'story',
+			component: Story,
 		},
 
 		{
@@ -46,12 +54,12 @@ const router = new Router({
 		},
 
 		{
-			path: '/storycustomizer/:id',
+			path: '/admin/storycustomizer/:id',
 			name: 'storycustomizer',
 			component: StoryCustomizer,
 		},
 		{
-			path: '/profile',
+			path: '/admin/profile',
 			name: 'profile',
 			component: Profile,
 			meta: {

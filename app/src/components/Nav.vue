@@ -51,15 +51,14 @@ import { mapState } from 'vuex';
 
 export default {
 	name: 'my-navbar',
-
+	computed: {
+		...mapState(['userId']),
+	},
 	data() {
 		return {
 			isLoggedIn: false,
 			userInfo: Object,
 		};
-	},
-	computed: {
-		...mapState(['userId']),
 	},
 	methods: {
 		logout() {

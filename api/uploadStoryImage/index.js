@@ -23,6 +23,7 @@ module.exports = async function (context, req) {
 			},
 			body: JSON.stringify({
 				url: URL,
+				message: 'Image uploaded successfully',
 			}),
 		};
 		context.done();

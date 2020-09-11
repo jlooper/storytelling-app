@@ -3,6 +3,7 @@ const CosmosClient = require('@azure/cosmos').CosmosClient;
 module.exports = async function (context, req) {
 	const storyRequest = {
 		title: req.body.title,
+		imageUrl: req.body.imageUrl,
 	};
 
 	var cosmos_config = {};
