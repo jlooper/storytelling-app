@@ -6,9 +6,10 @@ import Stories from '@/views/Stories.vue';
 import Story from '@/views/Story.vue';
 import Home from '@/views/admin/Home.vue';
 import Search from '@/views/admin/Search.vue';
+import MyStories from '@/views/admin/MyStories.vue';
+
 import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
 import Create from '@/views/admin/Create.vue';
-import Profile from '@/views/admin/Profile.vue';
 
 import Lost from '@/components/Lost.vue';
 
@@ -26,19 +27,33 @@ const router = new Router({
 			component: Stories,
 		},
 		{
-			path: '/admin/home',
+			path: '/admin',
 			name: 'home',
 			component: Home,
+		},
+		{
+			path: '/admin/stories',
+			name: 'my-stories',
+			component: MyStories,
+			meta: {
+				requiresAuth: true,
+			},
 		},
 		{
 			path: '/admin/create',
 			name: 'create',
 			component: Create,
+			meta: {
+				requiresAuth: true,
+			},
 		},
 		{
 			path: '/admin/search/:id',
 			name: 'search',
 			component: Search,
+			meta: {
+				requiresAuth: true,
+			},
 		},
 
 		{
@@ -58,14 +73,7 @@ const router = new Router({
 			name: 'storycustomizer',
 			component: StoryCustomizer,
 		},
-		{
-			path: '/admin/profile',
-			name: 'profile',
-			component: Profile,
-			meta: {
-				requiresAuth: true,
-			},
-		},
+
 		{
 			path: '/error',
 			name: 'error',

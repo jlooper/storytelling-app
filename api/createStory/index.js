@@ -4,6 +4,7 @@ module.exports = async function (context, req) {
 	const storyRequest = {
 		title: req.body.title,
 		imageUrl: req.body.imageUrl,
+		userId: req.body.userId,
 	};
 
 	var cosmos_config = {};
