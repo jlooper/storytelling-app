@@ -20,7 +20,6 @@ export default {
   computed: {
     ...mapState(["userId"]),
     showMenu() {
-      console.log(this.userId);
       if (this.userId == null) {
         return false;
       } else {

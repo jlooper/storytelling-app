@@ -27,6 +27,11 @@ const router = new Router({
 			component: Stories,
 		},
 		{
+			path: '/story',
+			name: 'story:id',
+			component: Story,
+		},
+		{
 			path: '/admin',
 			name: 'home',
 			component: Home,

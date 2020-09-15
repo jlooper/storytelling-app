@@ -1,0 +1,29 @@
+{
+	"bindings": [
+		{
+			"authLevel": "anonymous",
+			"name": "req",
+			"type": "httpTrigger",
+			"direction": "in",
+			"methods": ["post"],
+			"route": "getStoryItems"
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "res"
+		},
+		{
+			"type": "cosmosDB",
+			"direction": "in",
+			"createIfNotExists": false,
+			"partitionKey": "title",
+			"name": "inputDocumentIn",
+			"databaseName": "storytelling",
+			"collectionName": "storyItems",
+			"connectionStringSetting": "VUE_APP_CONNECTION_STRING",
+			"CreateLeaseCollectionIfNotExists": true
+		}
+	],
+	"disabled": false
+}

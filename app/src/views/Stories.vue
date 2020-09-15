@@ -13,7 +13,7 @@
           <div class="media">
             <div class="media-left"></div>
             <div class="media-content">
-              <p class="title is-4">{{ story.title }}</p>
+              <router-link :to="{ path: '/story/'+story.id+''}" class="title is-4">{{ story.title }}</router-link>
             </div>
           </div>
         </div>

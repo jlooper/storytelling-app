@@ -38,7 +38,7 @@
   </main>
 </template>
 <script>
-var axios = require("axios");
+//var axios = require("axios");
 import Steps from "@/components/Steps";
 import CooperHewitt from "@/components/Museums/CooperHewitt";
 import VictoriaAndAlbert from "@/components/Museums/VictoriaAndAlbert";
@@ -70,7 +70,7 @@ export default {
       this.$emit("search", this.search_field);
     },
 
-    createStoryItem(object) {
+    /*createStoryItem(object) {
       axios
         .post("/api/createStoryItem", {
           storyId: this.$route.params.id,
@@ -87,7 +87,7 @@ export default {
         .catch(function (error) {
           this.$buefy.toast.open(error);
         });
-    },
+    },*/
     goToStoryCustomizer() {
       this.$router.push({
         path: "/StoryCustomizer",
