@@ -44,6 +44,7 @@ export default {
       CooperHewittMuseumObjects: [],
     };
   },
+
   methods: {
     async startSearch(value) {
       var chconfig = {

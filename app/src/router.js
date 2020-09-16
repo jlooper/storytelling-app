@@ -7,7 +7,7 @@ import Story from '@/views/Story.vue';
 import Home from '@/views/admin/Home.vue';
 import Search from '@/views/admin/Search.vue';
 import MyStories from '@/views/admin/MyStories.vue';
-
+import MyStory from '@/views/admin/MyStory.vue';
 import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
 import Create from '@/views/admin/Create.vue';
 
@@ -40,6 +40,14 @@ const router = new Router({
 			path: '/admin/stories',
 			name: 'my-stories',
 			component: MyStories,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
+			path: '/admin/story',
+			name: 'my-story',
+			component: MyStory,
 			meta: {
 				requiresAuth: true,
 			},

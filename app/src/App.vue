@@ -21,11 +21,15 @@ export default {
 
 <style lang="scss">
 @import '~bulma/sass/utilities/_all';
+.card {
+	min-height: 400px;
+}
 $primary: #02a9ea;
 $base: #fffeff;
 $info: #ff01fb;
 $warning: #faff00;
 $link: #000300;
+$card-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02) !default;
 $colors: (
 	'white': (
 		$white,
