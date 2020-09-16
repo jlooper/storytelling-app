@@ -45,7 +45,7 @@ const router = new Router({
 			},
 		},
 		{
-			path: '/admin/story',
+			path: '/admin/story/:id',
 			name: 'my-story',
 			component: MyStory,
 			meta: {

@@ -69,12 +69,3 @@ export default {
 	},
 };
 </script>
-<style scoped>
-.box {
-	margin: 5px;
-}
-
-h3 {
-	padding-bottom: 20px;
-}
-</style>
