@@ -16,10 +16,8 @@ export default {
     axios
       .post("/api/getStoryItems", { id: this.$route.params.id })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           this.storyItems = response.data;
-          console.log(this.storyItems);
         } else {
           this.uploadError = true;
         }
