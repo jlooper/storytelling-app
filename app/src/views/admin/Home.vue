@@ -3,7 +3,7 @@
 		<section class="hero">
 			<div class="hero-body">
 				<div class="columns is-vcentered">
-					<div class="column is-half is-offset-1 is-centered home-elements">
+					<div class="column is-offset-1 is-centered home-elements">
 						<h1 class="is-size-1 is-bold home-elements">Welcome!</h1>
 						<h2 class="subtitle is-size-3 home-elements">The Storytelling App</h2>
 
@@ -32,10 +32,6 @@
 								>Login with Google</b-button
 							>
 						</div>
-					</div>
-
-					<div class="column is-half is-centered">
-						<img src="@/assets/home.png" />
 					</div>
 				</div>
 			</div>

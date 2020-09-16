@@ -18,7 +18,9 @@
 		"vue-router": "^3.4.3",
 		"vuex": "^3.5.1",
 		"vuex-persistedstate": "^2.7.1",
-		"vuedraggable": "^2.24.1"
+		"vuedraggable": "^2.24.1",
+		"vue-mindmap": "^0.0.4",
+		"@anteriovieira/vue-editor": "^0.0.3"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.4.0",

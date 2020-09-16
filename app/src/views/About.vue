@@ -1,8 +1,7 @@
 <template>
 	<main class="column is-four-fifths main is-pulled-right">
-		<div class="box main-content">
+		<div class=" main-content">
 			<h1 class="title">About The Storytelling App</h1>
-			<hr />
 		</div>
 	</main>
 </template>

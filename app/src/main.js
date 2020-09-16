@@ -3,7 +3,10 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import buefy from 'buefy';
+import Mindmap from 'vue-mindmap';
+import 'vue-mindmap/dist/vue-mindmap.css';
 
+Vue.use(Mindmap);
 Vue.use(buefy);
 
 Vue.config.productionTip = false;

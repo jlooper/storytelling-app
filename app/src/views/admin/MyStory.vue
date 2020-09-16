@@ -3,7 +3,7 @@
 		<h1 class="title">Drag to Reorder Story Elements</h1>
 		<div class="columns is-multiline">
 			<hr />
-			<draggable
+			<!--<draggable
 				class="column is-half "
 				v-model="storyItems"
 				group="items"
@@ -24,20 +24,27 @@
 						</div>
 					</div>
 				</div>
-			</draggable>
+			</draggable>-->
+
+			<mindmap class="column" :nodes="nodes" :connections="connections" :editable="true" />
 		</div>
 	</div>
 </template>
 <script>
-import draggable from 'vuedraggable';
+//import draggable from 'vuedraggable';
 import axios from 'axios';
+import map from '@/assets/map';
 export default {
 	components: {
-		draggable,
+		//draggable,
 	},
 	data() {
 		return {
 			storyItems: [],
+			nodes: [],
+			connections: [],
+			editable: true,
+			...map,
 		};
 	},
 	created() {
@@ -46,6 +53,7 @@ export default {
 			.then((response) => {
 				if (response.status === 200) {
 					this.storyItems = response.data;
+					console.log(this.nodes);
 				} else {
 					this.uploadError = true;
 				}
