@@ -11,9 +11,8 @@
 				</div>
 				<div class="card-content">
 					<div class="media">
-						<div class="media-left"></div>
 						<div class="media-content">
-							<router-link :to="{ path: '/story/' + story.id + '' }" class="title is-4">{{
+							<router-link :to="{ path: '/story/' + story.id + '' }" class="title is-5">{{
 								story.title
 							}}</router-link>
 						</div>
