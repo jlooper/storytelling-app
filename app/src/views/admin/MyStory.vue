@@ -1,6 +1,12 @@
 <template>
   <div>
     <h1 class="title">Story Elements</h1>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-info" @click="addToStory()">Add Items to Story</button>
+      </div>
+    </div>
     <div class="columns is-multiline">
       <hr />
 
@@ -30,7 +36,11 @@
         </div>
         <footer class="card-footer">
           <a href="#" class="card-footer-item">Edit</a>
-          <a href="#" class="card-footer-item">Remove From Story</a>
+          <a
+            href="#"
+            class="card-footer-item"
+            @click="deleteItem(item.id,item.items.title)"
+          >Remove From Story</a>
         </footer>
       </div>
 
@@ -54,6 +64,25 @@ export default {
       editable: true,
       //...map,
     };
+  },
+  methods: {
+    deleteItem(id, title) {
+      axios
+        .post("/api/deleteStoryItem", { id: id, title: title })
+        .then((response) => {
+          this.$buefy.toast.open(response.data.message);
+        })
+        .catch((err) => {
+          this.$buefy.toast.open(err);
+        });
+    },
+    addToStory() {
+      this.$router.push({
+        path: "/admin/search",
+        name: "search",
+        params: { id: this.$route.params.id },
+      });
+    },
   },
   created() {
     axios
