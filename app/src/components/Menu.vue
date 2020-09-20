@@ -1,6 +1,6 @@
 <template>
-  <div class="has-background-base">
-    <aside v-show="showMenu" class="column is-one-fifth aside is-pulled-left">
+  <div>
+    <aside v-show="showMenu" class="column has-background-light is-one-fifth aside is-pulled-left">
       <nav class="menu">
         <ul class="menu-list">
           <li>
@@ -29,3 +29,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+aside {
+  min-height: 100vh;
+}
+</style>
