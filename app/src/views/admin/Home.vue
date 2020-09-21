@@ -40,7 +40,7 @@ export default {
   name: "app",
   methods: {
     Auth(provider) {
-      const redirect = `post_login_redirect_uri=/home`;
+      const redirect = `post_login_redirect_uri=/admin/home`;
       const url = `/.auth/login/${provider}?${redirect}`;
       window.location.href = url;
     },

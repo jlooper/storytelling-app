@@ -4,7 +4,7 @@
       <nav class="menu">
         <ul class="menu-list">
           <li>
-            <router-link class="navbar-item" :to="'/admin/stories'">
+            <router-link class="navbar-item" :to="'/admin/home'">
               <i class="fas fa-book"></i> My Stories
             </router-link>
           </li>

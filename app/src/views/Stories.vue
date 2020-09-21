@@ -1,16 +1,17 @@
 <template>
   <main class="column is-four-fifths main is-pulled-right">
     <h1 class="title">Stories</h1>
+    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="true"></b-loading>
     <div class="main-content columns is-multiline">
       <hr />
       <div class="card column is-one-quarter" v-for="story in stories" :key="story.id">
-        <div class="card-image" v-if="loaded">
+        <div class="card-image">
           <figure class="image is-4by3">
             <img :src="buildImageUrl(story.imageUrl)" :alt="story.title" />
           </figure>
         </div>
-        <b-skeleton height="300px" :active="!loaded" :count="1"></b-skeleton>
-        <div class="card-content" v-if="loaded">
+        <!--<b-skeleton height="300px" :active="!loaded" :count="1"></b-skeleton>-->
+        <div class="card-content">
           <div class="media">
             <div class="media-content">
               <router-link :to="{ path: '/story/' + story.id + '' }" class="title is-5">
@@ -21,7 +22,7 @@
             </div>
           </div>
         </div>
-        <b-skeleton size="is-large" :active="!loaded" :count="3"></b-skeleton>
+        <!--<b-skeleton size="is-large" :active="!loaded" :count="3"></b-skeleton>-->
       </div>
     </div>
   </main>
@@ -32,7 +33,8 @@ export default {
   data() {
     return {
       stories: [],
-      loaded: false,
+      isLoading: false,
+      isFullPage: true,
     };
   },
   methods: {
@@ -48,20 +50,21 @@ export default {
     },
   },
   created() {
+    this.isLoading = true;
     axios
       .get("/api/getStories")
       .then((response) => {
-        this.loaded = true;
+        this.isLoading = false;
         if (response.status === 200) {
           this.stories = response.data;
-          console.log(this.stories);
         } else {
-          this.uploadError = true;
+          this.isLoading = false;
+          this.$buefy.toast.open(response.data.message);
         }
       })
       .catch((err) => {
-        this.uploadError = true;
-        console.error(err);
+        this.isLoading = false;
+        this.$buefy.toast.open(err);
       });
   },
 };

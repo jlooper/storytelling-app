@@ -37,7 +37,7 @@ const router = new Router({
 			component: Home,
 		},
 		{
-			path: '/admin/stories',
+			path: '/admin/home',
 			name: 'my-stories',
 			component: MyStories,
 			meta: {

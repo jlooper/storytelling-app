@@ -32,7 +32,7 @@
       <div v-if="userInfo" class="px-2 py-2">
         <p class="has-text-white">
           Welcome, {{ userInfo.userDetails }}! View your
-          <router-link class="has-text-white has-text-bold" :to="'/admin/stories'">stories</router-link>
+          <router-link class="has-text-white has-text-bold" :to="'/admin/home'">stories</router-link>
         </p>
       </div>
       <div v-else>&nbsp;</div>
