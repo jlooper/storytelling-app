@@ -1,10 +1,7 @@
 const CosmosClient = require('@azure/cosmos').CosmosClient;
 
 module.exports = async function (context, req) {
-	const storyItemRequest = {
-		storyId: req.body.storyId,
-		items: req.body.item,
-	};
+	const storyItemRequest = req.body;
 
 	var cosmos_config = {};
 	cosmos_config.endpoint = process.env['VUE_APP_COSMOS_ENDPOINT'];
