@@ -32,6 +32,9 @@
 					<div>
 						<p>{{ item.description }}</p>
 						<p>{{ item.medium }}</p>
+						<p>{{ item.provenance }}</p>
+						<p>{{ item.artist }}</p>
+						<p>{{ item.date }}</p>
 					</div>
 				</div>
 				<footer class="card-footer">
