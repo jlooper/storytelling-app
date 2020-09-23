@@ -19,13 +19,13 @@ module.exports = async function (context, req) {
 	const container = database.container(containerId);
 
 	try {
-		await container.item(storyItemRequest.id).delete();
+		await container.item(storyItemRequest.id, storyItemRequest.title).delete();
 		context.res = {
 			body: { message: 'You have successfully deleted a story element' },
 		};
 		context.done();
 	} catch (error) {
-		context.res = { body: error };
+		context.res = { body: { message: error } };
 		context.done();
 	}
 };

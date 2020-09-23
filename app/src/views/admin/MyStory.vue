@@ -9,7 +9,6 @@ import axios from "axios";
 import StoryItemsGrid from "@/components/StoryItemsGrid";
 export default {
   components: {
-    //draggable,
     StoryItemsGrid,
   },
   data() {
@@ -18,7 +17,6 @@ export default {
       nodes: [],
       connections: [],
       editable: true,
-      //...map,
     };
   },
 
@@ -28,7 +26,6 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           this.myStoryItems = response.data;
-          console.log(this.nodes);
         } else {
           this.uploadError = true;
         }
