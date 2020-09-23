@@ -84,7 +84,8 @@ export default {
   padding: 6px 0 15px;
   margin-bottom: 5px;
 }
-.content-wrapper {
+.wrapper {
   padding-bottom: 50px;
+  padding-top: 1px;
 }
 </style>

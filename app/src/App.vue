@@ -37,6 +37,9 @@ a {
   border-top: 2px solid;
   border-color: black;
 }
+aside {
+  min-height: 100vh;
+}
 
 $family-sans-serif: "CooperHewitt", "sans-serif";
 $primary: #000000;

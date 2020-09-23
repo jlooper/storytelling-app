@@ -2,7 +2,6 @@
   <main class="column is-four-fifths main is-pulled-right">
     <h1 class="title">My Stories</h1>
     <StoryGrid v-bind:stories="myStories" v-bind:admin="true" />
-
     <router-link class="button is-large is-link" :to="'create'">Create a Story</router-link>
   </main>
 </template>

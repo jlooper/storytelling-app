@@ -7,32 +7,37 @@
     </div>
     <div class="columns is-multiline">
       <hr />
-      <div class="card column is-one-quarter" v-for="item in storyItems" :key="item.id">
-        <header class="card-header">
+      <div class="column is-4" v-for="item in storyItems" :key="item.id">
+        <div class="card">
           <p class="card-header-title is-size-4">{{ item.title }}</p>
-        </header>
-        <div class="card-image">
-          <figure class="image">
-            <img :src="item.image" :alt="item.title" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div>
-            <p>{{ item.description }}</p>
-            <p>{{ item.medium }}</p>
-            <p>{{ item.provenance }}</p>
-            <p>{{ item.artist }}</p>
-            <p>{{ item.date }}</p>
+
+          <div class="columns">
+            <div class="column card-image">
+              <figure class="image is-ratio">
+                <img :src="item.image" alt="Image" />
+              </figure>
+            </div>
+            <div class="column card-content">
+              <div class="content">
+                <p style="text-overflow: ellipsis">{{ item.description }}</p>
+                <p>{{ item.medium }}</p>
+                <p>{{ item.provenance }}</p>
+                <p>{{ item.artist }}</p>
+                <p>{{ item.date }}</p>
+                <p class="tag">{{ item.collection }}</p>
+                
+              </div>
+            </div>
           </div>
+          <footer style="position: absolute; bottom: 0px;" v-if="admin" class="card-footer">
+            <a href="#" class="card-footer-item">Edit</a>
+            <a
+              href="#"
+              class="card-footer-item"
+              @click="deleteItem(item.id, item.title)"
+            >Remove From Story</a>
+          </footer>
         </div>
-        <footer v-if="admin" class="card-footer">
-          <a href="#" class="card-footer-item">Edit</a>
-          <a
-            href="#"
-            class="card-footer-item"
-            @click="deleteItem(item.id, item.title)"
-          >Remove From Story</a>
-        </footer>
       </div>
     </div>
   </section>
@@ -63,3 +68,5 @@ export default {
   },
 };
 </script>
+
+
