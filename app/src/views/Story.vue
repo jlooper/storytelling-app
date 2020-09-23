@@ -1,16 +1,20 @@
 <template>
-  <main>
-    <h1>Story items</h1>
-    <pre>{{storyItems}}</pre>
-  </main>
+  <div>
+    <h1 class="title">Story Elements</h1>
+    <StoryGrid v-bind:storyItems="storyItems" v-bind:admin="false" />
+  </div>
 </template>
 <script>
 import axios from "axios";
+import StoryGrid from "../components/StoryGrid";
 export default {
   data() {
     return {
       storyItems: [],
     };
+  },
+  components: {
+    StoryGrid,
   },
   created() {
     axios
