@@ -1,20 +1,20 @@
 <template>
   <div>
     <h1 class="title">Story Elements</h1>
-    <StoryGrid v-bind:storyItems="storyItems" v-bind:admin="true" />
+    <StoryItemsGrid v-bind:storyItems="myStoryItems" v-bind:admin="true" />
   </div>
 </template>
 <script>
 import axios from "axios";
-import StoryGrid from "@/components/StoryGrid";
+import StoryItemsGrid from "@/components/StoryItemsGrid";
 export default {
   components: {
     //draggable,
-    StoryGrid,
+    StoryItemsGrid,
   },
   data() {
     return {
-      storyItems: [],
+      myStoryItems: [],
       nodes: [],
       connections: [],
       editable: true,
@@ -27,7 +27,7 @@ export default {
       .post("/api/getStoryItems", { id: this.$route.params.id })
       .then((response) => {
         if (response.status === 200) {
-          this.storyItems = response.data;
+          this.myStoryItems = response.data;
           console.log(this.nodes);
         } else {
           this.uploadError = true;

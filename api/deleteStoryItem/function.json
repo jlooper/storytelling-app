@@ -6,13 +6,13 @@
 			"direction": "in",
 			"name": "req",
 			"methods": ["post"],
-			"partitionKey": "/title",
+			"partitionKey": "title",
 			"route": "deleteStoryItem"
 		},
 		{
 			"type": "http",
 			"direction": "out",
-			"partitionKey": "/title",
+			"partitionKey": "title",
 			"name": "res"
 		}
 	],

@@ -1,28 +1,7 @@
 <template web>
   <main class="column is-four-fifths main is-pulled-right">
     <h1 class="title">My Stories</h1>
-    <div class="main-content columns is-multiline">
-      <hr />
-      <div class="card column is-one-quarter" v-for="story in myStories" :key="story.id">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img :src="buildImageUrl(story.imageUrl)" :alt="story.title" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left"></div>
-            <div class="media-content">
-              <router-link :to="{ path: '/admin/story/' + story.id + '' }" class="title is-4">
-                {{
-                story.title
-                }}
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <StoryGrid v-bind:stories="myStories" v-bind:admin="true" />
 
     <router-link class="button is-large is-link" :to="'create'">Create a Story</router-link>
   </main>
@@ -31,8 +10,11 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+import StoryGrid from "@/components/StoryGrid";
 export default {
-  name: "profile",
+  components: {
+    StoryGrid,
+  },
   data() {
     return {
       myStories: [],
