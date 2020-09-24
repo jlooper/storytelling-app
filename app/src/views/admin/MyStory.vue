@@ -4,13 +4,6 @@
       <h1 class="title">Story Elements</h1>
       <StoryItemsGrid v-bind:storyItems="myStoryItems" v-bind:admin="true" />
     </div>
-    <div class="column is-one-quarter pr-0">
-      <aside class="pt-3 has-background-light">
-        <span class="navbar-item">
-          <span>INVENTORY</span>
-        </span>
-      </aside>
-    </div>
   </div>
 </template>
 <script>
