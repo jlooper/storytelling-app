@@ -9,6 +9,7 @@ import Search from '@/views/admin/Search.vue';
 import MyStories from '@/views/admin/MyStories.vue';
 import MyStory from '@/views/admin/MyStory.vue';
 import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
+import MyStoryMetadata from '@/views/admin/MyStoryMetadata.vue';
 import Create from '@/views/admin/Create.vue';
 
 import Lost from '@/components/Lost.vue';
@@ -28,7 +29,7 @@ const router = new Router({
 		},
 		{
 			path: '/story',
-			name: 'story:id',
+			name: 'story',
 			component: Story,
 		},
 		{
@@ -53,6 +54,14 @@ const router = new Router({
 			},
 		},
 		{
+			path: '/admin/story/metadata/:id',
+			name: 'addmetadata',
+			component: MyStoryMetadata,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
 			path: '/admin/create',
 			name: 'create',
 			component: Create,
@@ -61,7 +70,7 @@ const router = new Router({
 			},
 		},
 		{
-			path: '/admin/search/:id',
+			path: '/admin/story/search/:id',
 			name: 'search',
 			component: Search,
 			meta: {
