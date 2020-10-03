@@ -1,14 +1,19 @@
 <template>
 	<section>
 		<div class="columns container" v-if="admin">
-			<div class="column is-3">
+			<div class="column is-2">
 				<button class="button is-info" @click="addToStory()">
-					Search for Items to Add to Story
+					Search for Items
 				</button>
 			</div>
-			<div class="column is-3">
+			<div class="column is-2">
 				<button class="button is-info" @click="addMetaDataToStory()">
-					Add Metadata to Story
+					Add Metadata
+				</button>
+			</div>
+			<div class="column is-2">
+				<button class="button is-info" @click="setStoryLayout()">
+					Layout Story
 				</button>
 			</div>
 		</div>
@@ -116,6 +121,13 @@ export default {
 				path: '/admin/storycustomizer/',
 				name: 'storycustomizer',
 				params: { id: id, title: title },
+			});
+		},
+		setStoryLayout() {
+			this.$router.push({
+				path: '/admin/story/storylayout/',
+				name: 'storylayout',
+				params: { id: this.$route.params.id },
 			});
 		},
 	},

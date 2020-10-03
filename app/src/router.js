@@ -8,8 +8,10 @@ import Home from '@/views/admin/Home.vue';
 import Search from '@/views/admin/Search.vue';
 import MyStories from '@/views/admin/MyStories.vue';
 import MyStory from '@/views/admin/MyStory.vue';
-import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
 import MyStoryMetadata from '@/views/admin/MyStoryMetadata.vue';
+import MyStoryLayout from '@/views/admin/MyStoryLayout.vue';
+import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
+
 import Create from '@/views/admin/Create.vue';
 
 import Lost from '@/components/Lost.vue';
@@ -62,6 +64,14 @@ const router = new Router({
 			},
 		},
 		{
+			path: '/admin/story/layout/:id',
+			name: 'storylayout',
+			component: MyStoryLayout,
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		{
 			path: '/admin/create',
 			name: 'create',
 			component: Create,
@@ -77,6 +87,11 @@ const router = new Router({
 				requiresAuth: true,
 			},
 		},
+		{
+			path: '/admin/storycustomizer/:id',
+			name: 'storycustomizer',
+			component: StoryCustomizer,
+		},
 
 		{
 			path: '/story/:id',
@@ -88,12 +103,6 @@ const router = new Router({
 			path: '/about',
 			name: 'about',
 			component: About,
-		},
-
-		{
-			path: '/admin/storycustomizer/:id',
-			name: 'storycustomizer',
-			component: StoryCustomizer,
 		},
 
 		{
