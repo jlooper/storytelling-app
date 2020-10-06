@@ -5,12 +5,11 @@ import About from '@/views/About.vue';
 import Stories from '@/views/Stories.vue';
 import Story from '@/views/Story.vue';
 import Home from '@/views/admin/Home.vue';
-import Search from '@/views/admin/Search.vue';
+import MyStorySearch from '@/views/admin/MyStorySearch.vue';
 import MyStories from '@/views/admin/MyStories.vue';
 import MyStory from '@/views/admin/MyStory.vue';
 import MyStoryMetadata from '@/views/admin/MyStoryMetadata.vue';
 import MyStoryLayout from '@/views/admin/MyStoryLayout.vue';
-import StoryCustomizer from '@/views/admin/StoryCustomizer.vue';
 
 import Create from '@/views/admin/Create.vue';
 
@@ -82,15 +81,10 @@ const router = new Router({
 		{
 			path: '/admin/story/search/:id',
 			name: 'search',
-			component: Search,
+			component: MyStorySearch,
 			meta: {
 				requiresAuth: true,
 			},
-		},
-		{
-			path: '/admin/storycustomizer/:id',
-			name: 'storycustomizer',
-			component: StoryCustomizer,
 		},
 
 		{

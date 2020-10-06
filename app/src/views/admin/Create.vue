@@ -1,11 +1,12 @@
 <template>
   <main class="column is-four-fifths main is-pulled-right">
-    <!--breadcrumbs-->
-
-    <Steps activeStep="1" />
     <div class="box main-content">
       <h1 class="title">Tell a Story</h1>
-      <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="true"></b-loading>
+      <b-loading
+        :is-full-page="isFullPage"
+        :active.sync="isLoading"
+        :can-cancel="true"
+      ></b-loading>
       <hr />
       <section>
         <form @submit.prevent="submit">
@@ -22,7 +23,9 @@
             <div>
               <img :src="image" />
             </div>
-            <button class="button is-warning" @click="removeImage">Remove image</button>
+            <button class="button is-warning" @click="removeImage">
+              Remove image
+            </button>
           </div>
           <hr />
           <b-field label="Story Title">
@@ -40,21 +43,23 @@
     </div>
     <div class="field is-grouped is-pulled-right">
       <div class="control">
-        <button @click="goToStoryBuilder()" :disabled="!proceed" class="button is-info">Continue</button>
+        <button
+          @click="goToStoryBuilder()"
+          :disabled="!proceed"
+          class="button is-info"
+        >
+          Continue
+        </button>
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import Steps from "@/components/Steps";
 import { mapState } from "vuex";
 import axios from "axios";
 
 export default {
-  components: {
-    Steps,
-  },
   computed: {
     ...mapState(["userId"]),
   },

@@ -2,6 +2,8 @@
   <div class="columns">
     <div class="column">
       <h1 class="title">Story Elements</h1>
+      <!--breadcrumbs-->
+      <Breadcrumbs active="0" />
       <StoryItemsGrid v-bind:storyItems="myStoryItems" v-bind:admin="true" />
     </div>
   </div>
@@ -9,9 +11,11 @@
 <script>
 import axios from "axios";
 import StoryItemsGrid from "@/components/StoryItemsGrid";
+import Breadcrumbs from "@/components/Breadcrumbs";
 export default {
   components: {
     StoryItemsGrid,
+    Breadcrumbs,
   },
   data() {
     return {
