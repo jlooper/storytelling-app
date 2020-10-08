@@ -6,7 +6,7 @@
 			"type": "httpTrigger",
 			"direction": "in",
 			"methods": ["post"],
-			"route": "getStoryItems"
+			"route": "getAdminStoryItems"
 		},
 		{
 			"type": "http",
@@ -17,7 +17,6 @@
 			"type": "cosmosDB",
 			"direction": "in",
 			"createIfNotExists": false,
-			"sqlQuery": "select * from c order by c.position",
 			"partitionKey": "title",
 			"name": "inputDocumentIn",
 			"databaseName": "storytelling",

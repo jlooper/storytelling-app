@@ -27,9 +27,7 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
-.card {
-  min-height: 400px;
-}
+
 a {
   text-transform: uppercase;
 }
