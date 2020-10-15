@@ -32,7 +32,7 @@
         </section>
 
         <section>
-          <nav class="level">
+          <nav v-if="isSearching" class="level">
             <div class="level-left">
               <div class="level-item">
                 <p class="subtitle is-5">
@@ -52,8 +52,6 @@
               </div>
             </div>
           </nav>
-          <!--<CooperHewitt />
-					<VictoriaAndAlbert />-->
           <keep-alive>
             <component v-bind:is="component" />
           </keep-alive>
@@ -113,6 +111,7 @@ export default {
   },
   data() {
     return {
+      isSearching: false,
       component: "CooperHewittCards",
       storyTitle: "",
       message: "",
@@ -125,6 +124,7 @@ export default {
   },
   methods: {
     submit() {
+      this.isSearching = true;
       this.$emit("search", this.search_field);
     },
     toggle(view) {
