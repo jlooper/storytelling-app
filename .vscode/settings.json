@@ -4,5 +4,15 @@
     "azureFunctions.projectLanguage": "JavaScript",
     "azureFunctions.projectRuntime": "~2",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune"
+    "azureFunctions.preDeployTask": "npm prune",
+    "cSpell.enableFiletypes": [
+        "!restructuredtext",
+        "!rust",
+        "!scala",
+        "!typescript",
+        "!typescriptreact",
+        "!yaml",
+        "!yml",
+        "vue"
+    ]
 }
