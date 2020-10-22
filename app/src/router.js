@@ -9,7 +9,7 @@ import MyStorySearch from '@/views/admin/MyStorySearch.vue';
 import MyStories from '@/views/admin/MyStories.vue';
 import MyStory from '@/views/admin/MyStory.vue';
 import MyStoryMetadata from '@/views/admin/MyStoryMetadata.vue';
-import MyStoryLayout from '@/views/admin/MyStoryLayout.vue';
+import MyStoryTiles from '@/views/admin/MyStoryTiles.vue';
 
 import Create from '@/views/admin/Create.vue';
 
@@ -65,7 +65,7 @@ const router = new Router({
 		{
 			path: '/admin/story/layout/:id',
 			name: 'storylayout',
-			component: MyStoryLayout,
+			component: MyStoryTiles,
 			meta: {
 				requiresAuth: true,
 			},

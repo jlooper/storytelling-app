@@ -128,7 +128,6 @@ export default {
       this.$emit("search", this.search_field);
     },
     toggle(view) {
-      console.log(view);
       if (view == "cards") {
         this.component = "CooperHewittCards";
       } else {

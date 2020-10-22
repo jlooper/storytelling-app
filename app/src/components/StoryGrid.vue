@@ -1,12 +1,25 @@
 <template>
   <div>
-    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="true"></b-loading>
     <div class="main-content columns is-multiline">
       <hr />
-      <div class="card column is-one-quarter" v-for="story in stories" :key="story.id">
+      <div
+        class="card column is-one-quarter"
+        v-for="story in stories"
+        :key="story.id"
+      >
         <div class="card-image">
           <figure class="image is-4by3">
-            <img :src="buildImageUrl(story.imageUrl)" :alt="story.title" />
+            <b-loading
+              :is-full-page="isFullPage"
+              v-model="isLoading"
+              :can-cancel="true"
+            >
+            </b-loading>
+            <img
+              :src="buildImageUrl(story.imageUrl)"
+              @load="loadImage"
+              :alt="story.title"
+            />
           </figure>
         </div>
         <div class="card-content">
@@ -15,13 +28,15 @@
               <router-link
                 :to="{ path: '/story/' + story.id + '' }"
                 class="title is-5"
-              >{{story.title}}</router-link>
+                >{{ story.title }}</router-link
+              >
             </div>
             <div class="media-content" v-else>
               <router-link
                 :to="{ path: '/admin/story/' + story.id + '' }"
                 class="title is-5"
-              >{{story.title}}</router-link>
+                >{{ story.title }}</router-link
+              >
             </div>
           </div>
         </div>
@@ -32,14 +47,21 @@
 
 <script>
 export default {
-  props: { stories: Array, admin: Boolean },
+  props: {
+    stories: Array,
+    admin: Boolean,
+  },
   data() {
     return {
-      isLoading: false,
-      isFullPage: true,
+      isLoading: true,
+      isFullPage: false,
     };
   },
+
   methods: {
+    loadImage() {
+      this.isLoading = false;
+    },
     buildImageUrl(url) {
       //build the url for access to image
       let string = url;
@@ -53,3 +75,4 @@ export default {
   },
 };
 </script>
+

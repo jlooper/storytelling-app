@@ -16,6 +16,7 @@ export default {
       allStories: [],
     };
   },
+
   created() {
     this.isLoading = true;
     axios
