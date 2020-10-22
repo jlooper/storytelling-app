@@ -17,7 +17,7 @@
 			"type": "cosmosDB",
 			"direction": "in",
 			"createIfNotExists": false,
-			"sqlQuery": "select * from c order by c.position",
+			"sqlQuery": "select * from c",
 			"partitionKey": "title",
 			"name": "inputDocumentIn",
 			"databaseName": "storytelling",
