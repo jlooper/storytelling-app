@@ -58,33 +58,15 @@
         </section>
       </div>
 
-      <div class="column is-one-quarter m-5">
+      <div class="column is-one-third">
         <aside class="pt-3">
           <span class="navbar-item">
             <span>INVENTORY</span>
           </span>
-          <div class="columns" v-for="item in currentStoryItems" :key="item.id">
-            <div class="column is-full">
-              <div class="card">
-                <p class="card-header-title is-size-4">{{ item.title }}</p>
-
-                <div class="card-image">
-                  <figure class="image is-ratio">
-                    <img :src="item.image" alt="Image" />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="content">
-                    <p>{{ item.medium }}</p>
-                    <p>{{ item.provenance }}</p>
-                    <p>{{ item.artist }}</p>
-                    <p>{{ item.date }}</p>
-                    <p class="tag">{{ item.collection }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <StoryItemsGrid
+            v-bind:storyItems="currentStoryItems"
+            v-bind:admin="false"
+          />
         </aside>
       </div>
     </div>
@@ -92,19 +74,18 @@
 </template>
 <script>
 import Breadcrumbs from "@/components/Breadcrumbs";
-import CooperHewittCards from "@/components/Museums/CooperHewittCards";
-import CooperHewittList from "@/components/Museums/CooperHewittList";
-//import VictoriaAndAlbertCards from '@/components/Museums/VictoriaAndAlbertCards';
-//import VictoriaAndAlbertList from '@/components/Museums/VictoriaAndAlbertList';
+import CombinedMuseumCards from "@/components/Museums/CombinedMuseumCards";
+import CombinedMuseumList from "@/components/Museums/CombinedMuseumList";
+import StoryItemsGrid from "@/components/StoryItemsGrid";
+
 import axios from "axios";
 
 export default {
   components: {
     Breadcrumbs,
-    CooperHewittCards,
-    //VictoriaAndAlbertCards,
-    CooperHewittList,
-    //VictoriaAndAlbertList
+    CombinedMuseumCards,
+    StoryItemsGrid,
+    CombinedMuseumList,
   },
   props: {
     searchString: String,
@@ -112,7 +93,7 @@ export default {
   data() {
     return {
       isSearching: false,
-      component: "CooperHewittCards",
+      component: "CombinedMuseumCards",
       storyTitle: "",
       message: "",
       search_field: null,
@@ -129,9 +110,9 @@ export default {
     },
     toggle(view) {
       if (view == "cards") {
-        this.component = "CooperHewittCards";
+        this.component = "CombinedMuseumCards";
       } else {
-        this.component = "CooperHewittList";
+        this.component = "CombinedMuseumList";
       }
     },
   },

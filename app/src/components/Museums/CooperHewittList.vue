@@ -145,7 +145,7 @@ export default {
     },
   },
   created() {
-    this.$parent.$on("search", this.startSearch);
+    this.$parent.$parent.$on("search", this.startSearch);
   },
 };
 </script>

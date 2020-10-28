@@ -27,7 +27,7 @@
                         />
                       </figure>
                     </div>
-                    <div class="media-content">
+                    <div class="media-left">
                       <p class="title is-4">John Smith</p>
                       <p class="subtitle is-6">@johnsmith</p>
                     </div>
@@ -52,7 +52,7 @@
                         />
                       </figure>
                     </div>
-                    <div class="media-content">
+                    <div class="media-left">
                       <p class="title is-4">Ellen Ian</p>
                       <p class="subtitle is-6">@ellenian</p>
                     </div>
@@ -76,7 +76,7 @@
                         />
                       </figure>
                     </div>
-                    <div class="media-content">
+                    <div class="media-left">
                       <p class="title is-4">Ada Day</p>
                       <p class="subtitle is-6">@adaday</p>
                     </div>

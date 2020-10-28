@@ -13,29 +13,31 @@
           </div>
 
           <div class="media-content">
-            <p v-if="object.fields.title != ''" class="title is-4">{{ object.fields.title }}</p>
-            <p v-if="object.fields.object != ''" class="subtitle is-6">{{ object.fields.object }}</p>
-            <p
-              v-if="object.fields.date_text != ''"
-              class="subtitle is-6"
-            >Date: {{ object.fields.date_text }}</p>
-            <p
-              v-if="object.fields.location != ''"
-              class="subtitle is-6"
-            >Location: {{ object.fields.location }}</p>
-            <p
-              v-if="object.fields.artist != ''"
-              class="subtitle is-6"
-            >Artist: {{ object.fields.artist }}</p>
-            <p
-              v-if="object.fields.place != ''"
-              class="subtitle is-6"
-            >Place: {{ object.fields.place }}</p>
+            <p v-if="object.fields.title != ''" class="title is-4">
+              {{ object.fields.title }}
+            </p>
+            <p v-if="object.fields.object != ''" class="subtitle is-6">
+              {{ object.fields.object }}
+            </p>
+            <p v-if="object.fields.date_text != ''" class="subtitle is-6">
+              Date: {{ object.fields.date_text }}
+            </p>
+            <p v-if="object.fields.location != ''" class="subtitle is-6">
+              Location: {{ object.fields.location }}
+            </p>
+            <p v-if="object.fields.artist != ''" class="subtitle is-6">
+              Artist: {{ object.fields.artist }}
+            </p>
+            <p v-if="object.fields.place != ''" class="subtitle is-6">
+              Place: {{ object.fields.place }}
+            </p>
             <p class="tag is-dark mt-3">Victoria and Albert Collection</p>
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-info" @click="createStoryItem(object)">Add to Story</button>
+              <button class="button is-info" @click="createStoryItem(object)">
+                Add to Story
+              </button>
             </div>
           </div>
         </div>
@@ -109,7 +111,7 @@ export default {
     },
   },
   created() {
-    this.$parent.$on("search", this.startSearch);
+    this.$parent.$parent.$on("search", this.startSearch);
   },
 };
 </script>
