@@ -42,7 +42,7 @@ aside {
 $family-sans-serif: "CooperHewitt", "sans-serif";
 $primary: #000000;
 $base: #ffffff;
-$info: #ff47af;
+$info: #3BD23D;
 $warning: #faff00;
 $link: #ff6c2f;
 

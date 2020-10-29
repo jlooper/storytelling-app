@@ -38,6 +38,7 @@
 <script>
 export default {
   name: "app",
+  
   methods: {
     Auth(provider) {
       const redirect = `post_login_redirect_uri=/admin/home`;

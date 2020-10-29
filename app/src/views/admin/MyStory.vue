@@ -1,6 +1,11 @@
 <template>
   <div class="columns">
     <div class="column">
+      <b-loading
+        :is-full-page="isFullPage"
+        v-model="isLoading"
+        :can-cancel="true"
+      ></b-loading>
       <h1 class="title">Story Elements</h1>
       <!--breadcrumbs-->
       <Breadcrumbs active="0" />
@@ -27,10 +32,20 @@ export default {
       nodes: [],
       connections: [],
       editable: true,
+      isLoading: false,
+      isFullPage: true,
     };
   },
-
+  methods: {
+    openLoading() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2 * 1000);
+    },
+  },
   created() {
+    this.openLoading();
     axios
       .post("/api/getAdminStoryItems", { id: this.$route.params.id })
       .then((response) => {
