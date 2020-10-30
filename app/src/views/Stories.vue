@@ -24,27 +24,21 @@ export default {
     };
   },
 
-  methods: {
-    openLoading() {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2 * 1000);
-    },
-  },
-
   created() {
-    this.openLoading();
+    this.isLoading = true;
     axios
       .get("/api/getStories")
       .then((response) => {
         if (response.status === 200) {
+          this.isLoading = false;
           this.allStories = response.data;
         } else {
+          this.isLoading = false;
           this.$buefy.toast.open(response.data.message);
         }
       })
       .catch((err) => {
+        this.isLoading = false;
         this.$buefy.toast.open(err);
       });
   },

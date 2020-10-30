@@ -37,12 +37,6 @@ export default {
     ...mapState(["userId"]),
   },
   methods: {
-    openLoading() {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2 * 1000);
-    },
     buildImageUrl(url) {
       //build the url for access to image
       let string = url;
@@ -54,6 +48,7 @@ export default {
       );
     },
     createStory() {
+      this.isLoading = true;
       axios
         .post("/api/createStory", {
           title: "New Story",
@@ -85,17 +80,20 @@ export default {
     },
   },
   created() {
-    this.openLoading();
+    this.isLoading = true;
     axios
       .post("/api/getUserStories", { userId: this.userId })
       .then((response) => {
         if (response.status === 200) {
+          this.isLoading = false;
           this.myStories = response.data;
         } else {
+          this.isLoading = false;
           this.uploadError = true;
         }
       })
       .catch((err) => {
+        this.isLoading = false;
         this.uploadError = true;
         console.error(err);
       });

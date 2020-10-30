@@ -36,28 +36,23 @@ export default {
       isFullPage: true,
     };
   },
-  methods: {
-    openLoading() {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2 * 1000);
-    },
-  },
+
   created() {
-    this.openLoading();
+    this.isLoading = true;
     axios
       .post("/api/getAdminStoryItems", { id: this.$route.params.id })
       .then((response) => {
         if (response.status === 200) {
+          this.isLoading = false;
           this.myStoryItems = response.data;
         } else {
-          this.uploadError = true;
+          this.isLoading = false;
+          this.$buefy.toast.open(response.data.message);
         }
       })
       .catch((err) => {
-        this.uploadError = true;
-        console.error(err);
+        this.isLoading = false;
+        this.$buefy.toast.open(err);
       });
   },
 };

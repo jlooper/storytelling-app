@@ -7,11 +7,6 @@
         <section class="box main-content">
           <h1 class="title">Add Metadata to this Story</h1>
 
-          <b-loading
-            :is-full-page="isFullPage"
-            :active.sync="isLoading"
-            :can-cancel="true"
-          ></b-loading>
           <hr />
           <div class="list" v-for="(widget, index) in widgets" :key="index">
             <div
@@ -242,8 +237,6 @@ export default {
       storyTitle: "",
 
       message: "",
-      isLoading: false,
-      isFullPage: false,
       storyId: "",
       visible: true,
       widgets: [
