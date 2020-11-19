@@ -40,12 +40,41 @@
             </div>
           </div>
         </div>
+
+        <footer class="card-footer" v-if="admin">
+          <b-button
+            v-if="!story.published"
+            class="card-footer-item"
+            @click="publish(true, story)"
+            >Publish</b-button
+          >
+
+          <b-button
+            v-else
+            class="card-footer-item"
+            @click="publish(false, story)"
+            >Unpublish</b-button
+          >
+
+          <router-link
+            :to="{ path: '/admin/story/' + story.id + '' }"
+            class="button is-capitalized card-footer-item"
+            >Edit</router-link
+          >
+          <b-button
+            class="card-footer-item"
+            @click="deleteStory(story.id, story.title)"
+            >Delete</b-button
+          >
+        </footer>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: {
     stories: Array,
@@ -55,12 +84,35 @@ export default {
     return {
       isLoading: true,
       isFullPage: false,
+      isSwitched: false,
     };
   },
 
   methods: {
     loadImage() {
       this.isLoading = false;
+    },
+    publish(status, story) {
+      axios
+        .put("/api/updateStory", { story: story, publish: status })
+        .then((response) => {
+          console.log(response);
+          this.$buefy.toast.open("You have successfully edited a story");
+        })
+        .catch((err) => {
+          this.$buefy.toast.open(err);
+        });
+    },
+    deleteStory(id, title) {
+      axios
+        .post("/api/deleteStory", { id: id, title: title })
+        .then((response) => {
+          //todo, add a function to get rid of all story items
+          this.$buefy.toast.open(response.data.message);
+        })
+        .catch((err) => {
+          this.$buefy.toast.open(err);
+        });
     },
     buildImageUrl(url) {
       //build the url for access to image

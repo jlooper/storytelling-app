@@ -203,6 +203,7 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import axios from "axios";
 import { VueEditor } from "vue2-editor";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
 export default {
   components: {
@@ -389,6 +390,8 @@ export default {
     },
   },
   created() {
+    this.$emit(`update:layout`, LayoutDefault);
+
     this.storyId = this.$route.params.id;
     this.storyTitle = this.$route.params.title;
     //todo move to vuex

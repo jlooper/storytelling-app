@@ -12,6 +12,8 @@
 <script>
 import axios from "axios";
 import StoryGrid from "@/components/StoryGrid";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
+
 export default {
   components: {
     StoryGrid,
@@ -25,6 +27,8 @@ export default {
   },
 
   created() {
+    this.$emit(`update:layout`, LayoutDefault);
+
     this.isLoading = true;
     axios
       .get("/api/getStories")

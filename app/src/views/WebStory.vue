@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h1 class="title">Story Elements</h1>
-    <EndlessScrollView v-bind:storyItems="allStoryItems" v-bind:admin="false" />
+    <WebEndlessScrollView
+      v-bind:storyItems="allStoryItems"
+      v-bind:admin="false"
+    />
   </div>
 </template>
 <script>
-import LayoutDefault from "@/layouts/LayoutDefault.vue";
 import axios from "axios";
-import EndlessScrollView from "../components/EndlessScrollView";
+import LayoutPreview from "@/layouts/LayoutPreview.vue";
+
+import WebEndlessScrollView from "@/components/WebEndlessScrollView";
 export default {
   data() {
     return {
@@ -15,13 +18,15 @@ export default {
     };
   },
   components: {
-    EndlessScrollView,
+    WebEndlessScrollView,
   },
   created() {
-    this.$emit(`update:layout`, LayoutDefault);
+    this.$emit(`update:layout`, LayoutPreview);
 
     axios
-      .post("/api/getStoryItems", { id: this.$route.params.id })
+      .post("/api/getStoryItems", {
+        id: this.$route.params.id,
+      })
       .then((response) => {
         if (response.status === 200) {
           this.allStoryItems = response.data;

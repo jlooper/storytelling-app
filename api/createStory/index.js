@@ -5,6 +5,7 @@ module.exports = async function (context, req) {
 		title: req.body.title,
 		imageUrl: req.body.imageUrl,
 		userId: req.body.userId,
+		published: false,
 	};
 
 	var cosmos_config = {};
@@ -21,7 +22,12 @@ module.exports = async function (context, req) {
 	try {
 		const { item } = await container.items.create(storyRequest);
 		context.res = {
-			body: { id: item.id, title: req.body.title, message: 'You have successfully created a story!' },
+			body: {
+				id: item.id,
+				published: false,
+				title: req.body.title,
+				message: 'You have successfully created a story!',
+			},
 		};
 		context.done();
 	} catch (error) {

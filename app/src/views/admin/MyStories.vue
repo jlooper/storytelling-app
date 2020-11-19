@@ -7,11 +7,11 @@
     ></b-loading>
     <h1 class="title">My Stories</h1>
     <StoryGrid v-bind:stories="myStories" v-bind:admin="true" />
-    <span
-      class="button is-large is-primary is-uppercase mx-4 my-5"
-      @click="createStory"
+    <span class="button is-large is-primary mx-4 my-5" @click="createStory"
       >Create a Story by Searching</span
-    ><router-link class="button is-large is-link mx-4 my-5" :to="'create'"
+    ><router-link
+      class="button is-capitalized is-large is-link mx-4 my-5"
+      :to="'create'"
       >Create a Story with a Title</router-link
     >
   </main>
@@ -21,6 +21,8 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import StoryGrid from "@/components/StoryGrid";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
+
 export default {
   components: {
     StoryGrid,
@@ -80,6 +82,8 @@ export default {
     },
   },
   created() {
+    this.$emit(`update:layout`, LayoutDefault);
+
     this.isLoading = true;
     axios
       .post("/api/getUserStories", { userId: this.userId })

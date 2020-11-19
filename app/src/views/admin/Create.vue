@@ -58,6 +58,7 @@
 <script>
 import { mapState } from "vuex";
 import axios from "axios";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
 export default {
   computed: {
@@ -151,6 +152,9 @@ export default {
         params: { id: this.storyId, title: this.storyTitle },
       });
     },
+  },
+  created() {
+    this.$emit(`update:layout`, LayoutDefault);
   },
 };
 </script>

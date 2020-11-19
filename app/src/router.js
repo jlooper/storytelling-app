@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import About from '@/views/About.vue';
 import Stories from '@/views/Stories.vue';
 import Story from '@/views/Story.vue';
+import WebStory from '@/views/WebStory.vue';
 import Home from '@/views/admin/Home.vue';
 import MyStorySearch from '@/views/admin/MyStorySearch.vue';
 import MyStories from '@/views/admin/MyStories.vue';
@@ -91,6 +92,12 @@ const router = new Router({
 			path: '/story/:id',
 			name: 'story',
 			component: Story,
+		},
+
+		{
+			path: '/story/preview/:id',
+			name: 'webstory',
+			component: WebStory,
 		},
 
 		{

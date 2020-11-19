@@ -77,6 +77,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import CombinedMuseumCards from "@/components/Museums/CombinedMuseumCards";
 import CombinedMuseumList from "@/components/Museums/CombinedMuseumList";
 import StoryItemsGrid from "@/components/StoryItemsGrid";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
 import axios from "axios";
 
@@ -117,6 +118,8 @@ export default {
     },
   },
   created() {
+    this.$emit(`update:layout`, LayoutDefault);
+
     this.storyId = this.$route.params.id;
     this.storyTitle = this.$route.params.title;
     //todo move to vuex

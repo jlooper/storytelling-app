@@ -16,13 +16,17 @@
           >Create Layout</router-link
         >
       </li>
+      <li>
+        <router-link target="_blank" :to="'/story/preview/' + this.currId"
+          >Web Preview</router-link
+        >
+      </li>
       <!--<li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>-->
     </ul>
   </nav>
 </template>
 <script>
 export default {
-    
   props: ["active"],
   data() {
     return {

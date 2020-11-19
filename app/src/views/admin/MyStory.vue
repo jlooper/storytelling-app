@@ -21,6 +21,8 @@
 import axios from "axios";
 import StoryItemsGrid from "@/components/StoryItemsGrid";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
+
 export default {
   components: {
     StoryItemsGrid,
@@ -38,6 +40,7 @@ export default {
   },
 
   created() {
+    this.$emit(`update:layout`, LayoutDefault);
     this.isLoading = true;
     axios
       .post("/api/getAdminStoryItems", { id: this.$route.params.id })

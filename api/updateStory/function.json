@@ -6,7 +6,7 @@
 			"type": "httpTrigger",
 			"direction": "in",
 			"methods": ["put"],
-			"route": "update"
+			"route": "updateStory"
 		},
 		{
 			"type": "cosmosDB",
@@ -30,5 +30,5 @@
 			"CreateLeaseCollectionIfNotExists": true
 		}
 	],
-	"disabled": true
+	"disabled": false
 }

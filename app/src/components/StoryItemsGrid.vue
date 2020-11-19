@@ -67,12 +67,12 @@
           </div>
         </div>
         <div class="buttons mt-3" v-if="admin">
-          <a
+          <!--<a
             href="#"
             @click="goToStoryCustomizer(item.id, item.title)"
             class="button"
             >Edit</a
-          >
+          >-->
           <a href="#" class="button" @click="deleteItem(item.id, item.title)"
             >Remove From Story</a
           >
