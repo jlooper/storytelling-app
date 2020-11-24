@@ -1,10 +1,6 @@
 {
 	"routes": [
 		{
-			"route": "/admin/*",
-			"allowedRoles": ["administrator"]
-		},
-		{
 			"route": "/*",
 			"serve": "/index.html",
 			"statusCode": 200
