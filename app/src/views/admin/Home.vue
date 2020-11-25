@@ -5,9 +5,7 @@
         <div class="columns is-vcentered">
           <div class="column is-offset-1 is-centered home-elements">
             <h1 class="is-size-1 is-bold home-elements">Welcome!</h1>
-            <h2 class="subtitle is-size-3 home-elements">
-              The Storytelling App
-            </h2>
+            <h2 class="subtitle is-size-3 home-elements">Project Troubadour</h2>
 
             <div class="button-box">
               <b-button
@@ -41,7 +39,7 @@
   </div>
 </template>
 <script>
-import LayoutDefault from '@/layouts/LayoutDefault.vue';
+import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
 export default {
   name: "app",

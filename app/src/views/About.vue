@@ -1,7 +1,7 @@
 <template>
   <main class="column is-four-fifths main is-pulled-right">
     <div class="main-content">
-      <h1 class="title">About The Storytelling App</h1>
+      <h1 class="title">About This App</h1>
       <p>
         Codenamed "Project Troubadour", this application is a co-creation of the
         Cooper Hewitt Museum and Microsoft. We hope that it will become a

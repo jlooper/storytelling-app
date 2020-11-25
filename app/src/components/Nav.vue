@@ -1,9 +1,15 @@
 <template web>
   <div>
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
         <router-link class="navbar-item" :to="'/'">
-          <span class="navbar-item is-size-2 has-text-white">STORYTELLING</span>
+          <span class="navbar-item is-size-2 has-text-white"
+            >Project Troubadour</span
+          >
         </router-link>
         <a
           id="burger"
@@ -23,7 +29,13 @@
         <div class="navbar-end">
           <router-link class="navbar-item" :to="'/about'">About</router-link>
           <router-link class="navbar-item" :to="'/admin'">Admin</router-link>
-          <span v-if="userInfo" class="navbar-item" style="cursor:pointer" @click="logout">Logout</span>
+          <span
+            v-if="userInfo"
+            class="navbar-item"
+            style="cursor: pointer"
+            @click="logout"
+            >Logout</span
+          >
         </div>
       </div>
     </nav>
@@ -32,7 +44,9 @@
       <div v-if="userInfo" class="px-2 py-2">
         <p class="has-text-white">
           Welcome, {{ userInfo.userDetails }}! View your
-          <router-link class="has-text-white has-text-bold" :to="'/admin/home'">stories</router-link>
+          <router-link class="has-text-white has-text-bold" :to="'/admin/home'"
+            >stories</router-link
+          >
         </p>
       </div>
       <div v-else>&nbsp;</div>
@@ -58,7 +72,7 @@ export default {
     logout() {
       this.$store.commit("clearUserId");
       this.isLoggedIn = false;
-      const redirect = `post_logout_redirect_uri=/home`;
+      const redirect = `post_logout_redirect_uri=/`;
       const url = `/.auth/logout?${redirect}`;
       window.location.href = url;
     },
