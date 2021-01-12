@@ -12,7 +12,7 @@
 		"@azure/storage-blob": "^12.2.0",
 		"@types/dotenv": "^4.0.3",
 		"dotenv": "^6.0.0",
-		"axios": "^0.20.0",
+		"axios": "^0.21.1",
 		"into-stream": "^6.0.0",
 		"multipart-formdata": "^1.1.0"
 	},
