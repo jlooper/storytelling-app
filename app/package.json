@@ -10,7 +10,7 @@
 	"dependencies": {
 		"@anteriovieira/vue-editor": "^0.0.3",
 		"@shellybits/v-chacheli": "^0.1.1",
-		"axios": "^0.21.1",
+		"axios": "^0.21.2",
 		"buefy": "^0.9.3",
 		"bulma": "^0.9.0",
 		"core-js": "^3.6.5",
